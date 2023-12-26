@@ -1,0 +1,8 @@
+
+# .gitignore for a typical React project
+# Dependency directories
+pet-adoption-frontend/node_modules
+
+# Build output
+/build
+/dist

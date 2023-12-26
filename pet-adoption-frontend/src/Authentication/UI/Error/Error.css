@@ -1,0 +1,39 @@
+/* ErrorPage.css */
+.error-container {
+    margin-top: 35%;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8d7da;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.error-box {
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.error-icon {
+    font-size: 60px;
+    color: #dc3545;
+}
+
+.error-code {
+    font-size: 48px;
+    margin-top: 10px;
+    color: #dc3545;
+}
+
+.error-message {
+    font-size: 18px;
+    margin-top: 20px;
+    color: #555;
+}
+
+.error-button {
+    margin-top: 30px;
+}

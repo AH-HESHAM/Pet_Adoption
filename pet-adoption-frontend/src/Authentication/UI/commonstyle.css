@@ -1,0 +1,140 @@
+.allComponents{
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+    flex-direction: row;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.logo{
+    background-image:url("photos/logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width:44vw;
+    height:20vh;
+    /* margin-left: 16rem; */
+}
+
+.header_text{
+    font-weight: 600;
+    font-size: 3rem;
+    font-family: "Montserrat", sans-serif;
+    margin-left: 1rem;
+    color: rgba(0, 0, 0, 0.688);
+}
+
+.form{
+    padding: 25px;
+    background-color: rgb(230, 229, 229);
+    border-radius: .5rem;
+    border: solid rgb(254, 159, 5) 2px;
+    display: grid;
+    row-gap: 15px;
+    font-size: 2px;
+    font-weight: 530;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.input{
+    background-color: white;
+    color: black;
+    /* border: 2px solid rgb(52, 50, 50); */
+    border: none;
+    height: 5vh;
+    border-radius: .5rem;
+    padding-left: 5px;
+    font-size: 20px;
+    font-weight: 530;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.sendBtn{
+
+    height:6vh;
+    border-radius: .5rem;
+    color: white;
+    background-color: rgb(254, 159, 5);
+    cursor: pointer;
+    display: block;
+    font-size: 25px;
+    font-weight: 530;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.error{
+    margin-top: 1px;
+    margin-bottom: 2px;
+    margin-left: 1rem;
+    font-weight: 600;
+    font-size: 17px;
+    color: red;
+    display: block;
+}
+
+.small{
+    margin-top: 1px;
+    margin-bottom: 2px;
+    margin-left: 1rem;
+    font-weight: 600;
+    font-size: 17px;
+    color: black;
+    display: block;
+}
+
+.link{
+    color: rgb(254, 159, 5);
+}
+
+@media (min-width: 320px) {
+    .allComponents {
+        width: 300px;
+    }
+    .form{
+        width: 90vw;
+    }
+    .input{
+        width: 80vw;
+    }
+}
+
+@media (min-width: 768px) {
+    .allComponents {
+        width: 750px;
+    }
+    .form{
+        width: 50vw;
+    }
+    .input{
+        width: 45vw;
+    }
+    .sendBtn{
+        width:15vw;
+    }
+
+}
+/* medium */
+@media (min-width: 950px) {
+    .allComponents {
+        width: 900px;
+    }
+    .form{
+        width: 60vw;
+    }
+    .input{
+        width: 55vw;
+    }
+}
+/* larg */
+@media (min-width: 1200px) {
+    .allComponents {
+        width: 90vw;
+    }
+    .form{
+        width: 50vw;
+    }
+    .input{
+        width: 45vw;
+    }
+}
