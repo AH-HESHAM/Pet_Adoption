@@ -60,7 +60,7 @@ export const nav = [
         path: paths.AdopterHome,
         Title: "Adopter Home",
         element: <AdopterHome />,
-        status: AdopterPrivilege
+        status: ExternalPrivilege
     },
 
     // Manager Pages

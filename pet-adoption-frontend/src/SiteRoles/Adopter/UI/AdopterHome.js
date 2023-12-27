@@ -1,8 +1,12 @@
-import React from 'react';
+import NavbarComponent from '../../../CommonComponents/navbar/nave';
+import PostsList from '../UI/posts/postsList';
 
 function AdopterHome(props) {
 	return (
-		<div>Adopter home page</div>
+		<div>
+			<NavbarComponent/>
+			<PostsList/>
+		</div>
 	);
 }
 

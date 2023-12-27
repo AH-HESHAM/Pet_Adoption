@@ -1,0 +1,114 @@
+.adopterAllPosts{
+    display: flex;
+    justify-content: center;
+    margin: 70px 1rem;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.adoptionLogo{
+    display: none;
+}
+
+@media(min-width: 1230px){
+    .adoptionLogo{
+        display: inline;
+        position: fixed;
+        top: 70px;
+    }
+}
+
+.adopterPost{
+    margin: 10px;
+    border: solid rgb(254, 159, 5) 2px;
+    background-color: antiquewhite;
+}
+
+.adopterPostHeader{
+    display: flex;
+}
+
+.adopterPostShelterIcon{
+    background: url(shelter.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
+
+.adopterPostShelter{
+    margin: 3px;
+    padding: 2px;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.adopterPostDate{
+    margin-bottom: 10px;
+    margin-left: 44px;
+    font-size: 18px;
+    margin-top: -15px;
+}
+
+.adopterPostInfoTitle{
+    margin: 3px;
+    padding: 3px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.adopterPostInfo{
+    margin: 3px;
+    padding: 3px;
+    font-size: 18px;
+}
+
+.adoptionBtn{
+    height:4vh;
+    border-radius: .5rem;
+    color: white;
+    background-color: rgb(254, 159, 5);
+    font-size: 18px;
+    font-weight: 530;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 5px;
+    position: relative;
+    left: calc(100% - 170px);
+}
+
+@media (min-width: 320px) {
+    .adopterAllPosts {
+        width: 300px;
+    }
+    .adopterPost{
+        width: 90vw;
+    }
+}
+
+@media (min-width: 768px) {
+    .adopterAllPosts {
+        width: 750px;
+    }
+    .adopterPost{
+        width: 50vw;
+    }
+}
+/* medium */
+@media (min-width: 950px) {
+    .adopterAllPosts {
+        width: 900px;
+    }
+    .adopterPost{
+        width: 60vw;
+    }
+}
+/* larg */
+@media (min-width: 1200px) {
+    .adopterAllPosts {
+        width: 90vw;
+    }
+    .adopterPost{
+        width: 50vw;
+    }
+}
