@@ -1,4 +1,4 @@
-.adopterAllPosts{
+.allPosts{
     display: flex;
     justify-content: center;
     margin: 70px 1rem;
@@ -7,29 +7,29 @@
     flex-wrap: wrap;
 }
 
-.adoptionLogo{
+.listLogo{
     display: none;
 }
 
 @media(min-width: 1230px){
-    .adoptionLogo{
+    .listLogo{
         display: inline;
         position: fixed;
         top: 70px;
     }
 }
 
-.adopterPost{
+.post{
     margin: 10px;
     border: solid rgb(254, 159, 5) 2px;
     background-color: antiquewhite;
 }
 
-.adopterPostHeader{
+.postHeader{
     display: flex;
 }
 
-.adopterPostShelterIcon{
+.postShelterIcon{
     background: url(shelter.png);
     background-size: cover;
     background-repeat: no-repeat;
@@ -37,34 +37,34 @@
     height: 40px;
 }
 
-.adopterPostShelter{
+.postShelter{
     margin: 3px;
     padding: 2px;
     font-weight: 600;
     font-size: 22px;
 }
 
-.adopterPostDate{
+.postDate{
     margin-bottom: 10px;
     margin-left: 44px;
     font-size: 18px;
     margin-top: -15px;
 }
 
-.adopterPostInfoTitle{
+.postInfoTitle{
     margin: 3px;
     padding: 3px;
     font-size: 20px;
     font-weight: 600;
 }
 
-.adopterPostInfo{
+.postInfo{
     margin: 3px;
     padding: 3px;
     font-size: 18px;
 }
 
-.adoptionBtn{
+.listBtn{
     height:4vh;
     border-radius: .5rem;
     color: white;
@@ -78,37 +78,37 @@
 }
 
 @media (min-width: 320px) {
-    .adopterAllPosts {
+    .allPosts {
         width: 300px;
     }
-    .adopterPost{
+    .post{
         width: 90vw;
     }
 }
 
 @media (min-width: 768px) {
-    .adopterAllPosts {
+    .allPosts {
         width: 750px;
     }
-    .adopterPost{
+    .post{
         width: 50vw;
     }
 }
 /* medium */
 @media (min-width: 950px) {
-    .adopterAllPosts {
+    .allPosts {
         width: 900px;
     }
-    .adopterPost{
+    .post{
         width: 60vw;
     }
 }
 /* larg */
 @media (min-width: 1200px) {
-    .adopterAllPosts {
+    .allPosts {
         width: 90vw;
     }
-    .adopterPost{
+    .post{
         width: 50vw;
     }
 }
