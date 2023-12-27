@@ -1,9 +1,11 @@
 .navbar{
-background-color: rgb(27, 31, 33) !important;
- }
-.bell-icon:hover {
-    color: #0071ff; 
+    background-color: rgb(27, 31, 33) !important;
 }
+
+.profileIcon:hover{
+    background-color: rgb(254, 159, 5);
+}
+
 .navLink{
     color:rgb(254, 159, 5) !important;
 }

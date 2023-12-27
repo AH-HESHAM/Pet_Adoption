@@ -1,0 +1,47 @@
+.allProfile{
+    position: fixed;
+    top: 70px;
+    right: 2%;
+}
+
+.profileBody{
+    border: solid rgb(254, 159, 5) 2px;
+    background-color: antiquewhite;
+}
+
+.profileIcon{
+    background-image: url(profile.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 100%;
+    margin-left: 10px;
+    margin-top: 3px;
+}
+
+.profileInfo{
+    font-size: 22px;
+    padding: 20px;
+}
+
+.btnEditProfile{
+    height:4vh;
+    border-radius: .5rem;
+    color: white;
+    background-color: rgb(254, 159, 5);
+    cursor: pointer;
+    display: block;
+    font-size: 20px;
+    font-weight: 530;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 5px;
+    display: inline;
+}
+
+.editInput{
+    display: block;
+    margin: 5px;
+}
+
