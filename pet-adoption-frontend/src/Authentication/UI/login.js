@@ -5,8 +5,10 @@ import {paths} from "../../collection";
 
 function Login(props) {
 
+    const [kind, setKind] = useState("ADOPTER");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    
     const handleLogin = (event)=>{
         event.preventDefault();
     }
@@ -15,6 +17,14 @@ function Login(props) {
             <div className="logo"></div>
             <form className="form" onSubmit={handleLogin}>
                 <h1 className="header_text">Login</h1>
+
+                {/* user type */}
+                <select onChange={(e) => setKind(e.target.value)} className="input">
+                    <option value={"ADOPTER"}>Adopter</option>
+                    <option value={"STAFF"}>Staff</option>
+                    <option value={"MANAGER"}>Manager</option>
+                </select>
+
                 <input className="input"
                        placeholder="E-mail as name@example.com"
                        type="email" required

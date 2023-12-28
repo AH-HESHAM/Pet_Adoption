@@ -1,0 +1,114 @@
+.allPosts{
+    display: flex;
+    justify-content: center;
+    margin: 70px 1rem;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.listLogo{
+    display: none;
+}
+
+@media(min-width: 1230px){
+    .listLogo{
+        display: inline;
+        position: fixed;
+        top: 70px;
+    }
+}
+
+.post{
+    margin: 10px;
+    border: solid rgb(254, 159, 5) 2px;
+    background-color: antiquewhite;
+}
+
+.postHeader{
+    display: flex;
+}
+
+.postShelterIcon{
+    background: url(shelter.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
+
+.postShelter{
+    margin: 3px;
+    padding: 2px;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.postDate{
+    margin-bottom: 10px;
+    margin-left: 44px;
+    font-size: 18px;
+    margin-top: -15px;
+}
+
+.postInfoTitle{
+    margin: 3px;
+    padding: 3px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.postInfo{
+    margin: 3px;
+    padding: 3px;
+    font-size: 18px;
+}
+
+.listBtn{
+    height:4vh;
+    border-radius: .5rem;
+    color: white;
+    background-color: rgb(254, 159, 5);
+    font-size: 18px;
+    font-weight: 530;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 5px;
+    position: relative;
+    left: calc(100% - 170px);
+}
+
+@media (min-width: 320px) {
+    .allPosts {
+        width: 300px;
+    }
+    .post{
+        width: 90vw;
+    }
+}
+
+@media (min-width: 768px) {
+    .allPosts {
+        width: 750px;
+    }
+    .post{
+        width: 50vw;
+    }
+}
+/* medium */
+@media (min-width: 950px) {
+    .allPosts {
+        width: 900px;
+    }
+    .post{
+        width: 60vw;
+    }
+}
+/* larg */
+@media (min-width: 1200px) {
+    .allPosts {
+        width: 90vw;
+    }
+    .post{
+        width: 50vw;
+    }
+}

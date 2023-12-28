@@ -1,0 +1,50 @@
+.navbar{
+    background-color: rgb(27, 31, 33) !important;
+}
+
+.profileIcon:hover{
+    background-color: rgb(254, 159, 5);
+}
+
+.navLink{
+    color:rgb(254, 159, 5) !important;
+}
+.navLink:hover {
+    color: white!important;
+    transition: 50ms !important;
+}
+.brand{
+    color:rgb(254, 159, 5) !important;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btonLink{
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+.btonLink:hover{
+    color: rgb(254, 159, 5);
+}
+.bton{
+    background-color:rgb(254, 159, 5);
+    margin-left: 1rem;
+}
+.bton:hover {
+    color: rgb(254, 159, 5);
+    background-color: white;
+    transition: .5s;
+}
+
+.notifiButton{
+    background-image: url("notifi.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
+
+.toggle{
+    background-color: rgb(254, 159, 5);
+}

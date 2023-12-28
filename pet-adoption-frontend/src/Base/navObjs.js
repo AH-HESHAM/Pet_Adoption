@@ -60,7 +60,7 @@ export const nav = [
         path: paths.AdopterHome,
         Title: "Adopter Home",
         element: <AdopterHome />,
-        status: AdopterPrivilege
+        status: ExternalPrivilege
     },
 
     // Manager Pages
@@ -68,7 +68,7 @@ export const nav = [
         path: paths.ManagerHome,
         Title: "Manager Home",
         element: <ManagerHome />,
-        status: StaffPrivilege
+        status: ExternalPrivilege
     },
 
     // Staff Pages
@@ -76,6 +76,6 @@ export const nav = [
         path: paths.StaffHome,
         Title: "Staff Home",
         element: <StaffHome />,
-        status: AdopterPrivilege
+        status: ExternalPrivilege
     }
 ]
