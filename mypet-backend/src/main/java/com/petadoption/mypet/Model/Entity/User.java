@@ -23,14 +23,15 @@ public class User implements UserDetails {
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String email;
     @JsonIgnore
     private String password;
     private String phone;
     private String address;
     private String city;
-    @Column(name = "is_valid", columnDefinition = "boolean default false")
+    @Column(name = "is_valid", columnDefinition = "boolean default true")
     private boolean isValid;
     @Enumerated(EnumType.STRING)
     private Role role;
