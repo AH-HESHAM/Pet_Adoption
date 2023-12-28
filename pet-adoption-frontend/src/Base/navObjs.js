@@ -68,7 +68,7 @@ export const nav = [
         path: paths.ManagerHome,
         Title: "Manager Home",
         element: <ManagerHome />,
-        status: StaffPrivilege
+        status: ExternalPrivilege
     },
 
     // Staff Pages

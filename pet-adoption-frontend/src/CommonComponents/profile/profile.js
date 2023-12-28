@@ -1,16 +1,7 @@
 import '../profile/profileStyle.css'
 import React, { useState } from 'react';
 
-const Profile = ()=>{
-
-    const [user, setUser] = useState(
-        {
-            eMail: "ahmed@gmail,com",
-            fname: "Ahmed",
-            lname: "Hesham",
-            phone: "01234567890"
-        }
-    );
+const Profile = (props)=>{
 
     const [showProfile, setShowProfile] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
@@ -21,14 +12,6 @@ const Profile = ()=>{
     const [editLname, setEditLname] = useState("");
     const [oldPass, setOldPass] = useState("");
     const [newPass, setNewPass] = useState("");
-
-    // useEffect(() => {
-    //     const getUser = async () => {
-    //     const user = await getUserInfoRequest;
-    //     setListToShow(posts)
-    //     };
-    //     getUser();
-    // }, []);
 
     const handleViewProfile = ()=>{
         setShowProfile(!showProfile)
@@ -57,10 +40,10 @@ const Profile = ()=>{
             {showProfile && 
                 <div className='profileBody'>
                     <div className='profileInfo'>
-                        <p>{user.eMail}</p>
-                        <p>{user.fname}</p>
-                        <p>{user.lname}</p>
-                        <p>{user.phone}</p>
+                        <p>{props.user.email}</p>
+                        <p>{props.user.fname}</p>
+                        <p>{props.user.lname}</p>
+                        <p>{props.user.phone}</p>
                     </div>
                     <button className='btnEditProfile' onClick={handleShowEdit} >Edit profile</button>
                 </div>
