@@ -3,6 +3,7 @@ package com.petadoption.mypet.Model.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.petadoption.mypet.Enum.Role;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
