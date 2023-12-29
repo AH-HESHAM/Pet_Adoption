@@ -36,8 +36,6 @@ public class UserRepository {
             user.setEmail(res.getString("email"));
             user.setPassword(res.getString("password"));
             user.setPhone(res.getString("phone"));
-            user.setAddress(res.getString("address"));
-            user.setCity(res.getString("city"));
             user.setValid(res.getBoolean("is_valid"));
             user.setRole(Role.valueOf(res.getString("role")));
             return user;
@@ -49,18 +47,9 @@ public class UserRepository {
         String sql = "SELECT EXISTS(SELECT 1 FROM user WHERE email = ?)";
         return Boolean.TRUE.equals(jdbcTemplate.queryForObject(sql, Boolean.class, email));
     }
-
-    // public void save(User user) {
-    // String sql = "INSERT INTO user (first_name, last_name, email, password,
-    // phone, address, city, role) " +
-    // "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    // jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(),
-    // user.getEmail(), user.getPassword(), user.getPhone(),
-    // user.getAddress(), user.getCity(), user.getRole().name());
-    // }
     public int save(User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        String sql = "INSERT INTO user (first_name, last_name, email, password, phone, address, city, role) " +
+        String sql = "INSERT INTO user (first_name, last_name, email, password, phone, role) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection
@@ -70,8 +59,6 @@ public class UserRepository {
             ps.setString(3, user.getEmail());
             ps.setString(4, user.getPassword());
             ps.setString(5, user.getPhone());
-            ps.setString(6, user.getAddress());
-            ps.setString(7, user.getCity());
             ps.setString(8, user.getRole().name());
             return ps;
         }, keyHolder);
