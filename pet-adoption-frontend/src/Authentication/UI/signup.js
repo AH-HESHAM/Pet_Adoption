@@ -3,6 +3,10 @@ import {Link} from "react-router-dom";
 import './commonstyle.css';
 import React from 'react';
 import {paths} from "../../collection";
+import { user } from "../User";
+import {SignupRequest, GetShelters} from "../Service/signupService"
+import { useNavigate } from "react-router-dom";
+
 function Signup(props) {
     // form fields
     const [kind, setKind] = useState("ADOPTER");
@@ -15,46 +19,75 @@ function Signup(props) {
     const [location, setLocation] = useState("");
     const [phone, setPhone] = useState("");
     const [shelterPhone, setShelterPhone] = useState("");
+    const [managerId, setManagerId] = useState("");
     const [role, setRole] = useState("PUBLISHER");
+    
     const [passMatching, setPassMatching] = useState(true)
+    
     const [allShelters, setAllShelters] = useState([])
 
-    const handleSignup = (event)=>{
+    const navigate = useNavigate();
+
+    const handleSignup = async (event)=>{
         event.preventDefault();
         if(password === confirmPassword){
-            // need create object
-            // need sending request
-            // need routing
             setPassMatching(true)
-            console.log(email)
-            console.log(firstNmae)
-            console.log(lastName)
-            console.log(password)
-            console.log(confirmPassword)
-            console.log(location)
-            console.log(phone)
-            console.log(role)
-            console.log(kind)
+            // need routing
+            const res = await SignupRequest(createUser());
+            if(res === "User registered successfully")
+                navigate(paths.login)
         }
         else{
             setPassMatching(false);
         }
     }
 
-    const handleRoleChange = (role)=>{
+    const createUser = () =>{
+        let curUser = new user();
+        curUser.email = email;
+        curUser.firstName = firstNmae;
+        curUser.lastName = lastName;
+        curUser.password = password;
+        curUser.phone = phone;
+        curUser.shelterAddress = location;
+        curUser.shelterPhone = shelterPhone;
+        curUser.worksFor = shelterName;
+        curUser.role = getRole();
+        return curUser;
+    }
+ 
+    const getRole = () =>{
+        if(kind === "ADOPTER")
+            return "ROLE_ADOPTER"
+
+        if(kind === "MANAGER")
+            return "ROLE_MANAGER"
+
+        if(kind === "STAFF" && role === "REVIEWER")
+            return "ROLE_STAFF_REVIEWER"
+
+        if(kind === "STAFF" && role === "PUBLISHER")
+        return "ROLE_STAFF_PUBLISHER"
+    }
+
+    const handleRoleChange = async (role)=>{
         setKind(role)
         if(role === "STAFF"){
             // need request from backend
-            setAllShelters(["sh1", "sh2", "sh3"]);
+            const res = await GetShelters();
+            setAllShelters(res);
         }
+    }
+
+    const handleShelterName = (shelter)=>{
+        setShelterName(shelter.name);
+        setManagerId(shelter.managerId)
     }
 
     const handleConfirmPassword = (pass)=>{
         setConfirmPassword(pass)
         setPassMatching(pass === password)
     }
-
-    
 
     return(
         <div className="allComponents">
@@ -105,9 +138,9 @@ function Signup(props) {
                         </select>
 
                         {/* list of shelters in system */}
-                        <select onChange={(e) => setShelterName(e.target.value)} className="input">
-                            {allShelters.map((value) => (
-                                <option>{"Works for: " + value}</option>
+                        <select onChange={(e) => handleShelterName(e.target.value)} className="input">
+                            {allShelters.map((shelter) => (
+                                <option value={shelter}>{"Works for: " + shelter.name}</option>
                             ))}
                         </select>
                     </>
