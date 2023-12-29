@@ -15,7 +15,7 @@ import java.util.List;
 
 @Data
 @Accessors(chain = true)
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @Table(name = "user")
 public class User implements UserDetails {
