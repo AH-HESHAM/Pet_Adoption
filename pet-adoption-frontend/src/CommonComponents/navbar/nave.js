@@ -25,12 +25,10 @@ const NavbarComponent = () => {
     setShowNotification(!showNotification);
   };
 
-  // Function to handle email modal open
   const handleEmailModalOpen = () => {
     setShowEmailModal(true);
   };
 
-  // Function to handle email modal close
   const handleEmailModalClose = () => {
     setShowEmailModal(false);
   };
@@ -56,16 +54,16 @@ const NavbarComponent = () => {
 
           <Navbar.Toggle aria-controls="navbarScroll" className="toggle" />
           <Navbar.Collapse id="navbarScroll" className="justify-content-center">
-            <Nav className="me-auto my-2 my-lg-0" navbarScroll>
-              
-            </Nav>
+            <Nav className="me-auto my-2 my-lg-0" navbarScroll></Nav>
 
             {/* Button to open Email Modal */}
             <Button
-              variant="link"
+              variant="outline-secondary"
               onClick={handleEmailModalOpen}
-              className="bi-envelope position-relative"
-            ></Button>
+              className="position-relative me-auto"
+            >
+              Requests
+            </Button>
 
             {/* Email Modal */}
             <Modal
@@ -91,7 +89,7 @@ const NavbarComponent = () => {
               {/* Adjusted width for the search box */}
               <Form
                 className="d-flex"
-                style={{ minWidth: "480px", paddingRight: "10px" }}
+                style={{ minWidth: "480px", paddingLeft: "10px" }}
               >
                 {/* Added margin to the right of the search box */}
                 <Form.Control
