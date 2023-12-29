@@ -63,6 +63,7 @@ function Login(props) {
                 </button>
                 <span className="small">Don't have an account? <Link className="link" to={paths.signup}>Sign up</Link></span>
             </form>
+            <button></button>
         </div>
     )
 }
