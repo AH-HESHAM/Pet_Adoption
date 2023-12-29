@@ -13,7 +13,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/adoption")
 public class AdoptionApplicationController {
 
