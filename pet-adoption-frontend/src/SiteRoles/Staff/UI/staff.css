@@ -10,18 +10,15 @@
     margin-top: 3px;
     position: fixed;
     right: 2%;
-    
-
+    top: 170px;
 }
 
 .requestsIcon{
     background-image: url(request.png);
-    top: 170px;
 }
 
 .createIcon{
     background-image: url(pencil.png);
-    top: 220px;
 }
 
 

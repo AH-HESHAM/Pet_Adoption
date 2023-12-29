@@ -15,7 +15,9 @@ export const paths = {
 
 	ManagerHome: "/manager/home",
 
-	StaffHome: "/staff/home",
+	ReviewerHome: "/reviewer/home",
+	
+	PublisherHome: "/publisher/home",
 
 	notFound: "*"
 }

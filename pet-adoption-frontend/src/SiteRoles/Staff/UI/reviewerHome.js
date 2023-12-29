@@ -4,7 +4,7 @@ import Profile from '../../../CommonComponents/profile/profile';
 import "./staff.css"
 import React, { useState } from 'react';
 
-function StaffHome(props) {
+function ReviewerHome(props) {
 
 	const [tab, setTab] = useState("posts");
 
@@ -82,9 +82,9 @@ function StaffHome(props) {
 			<Profile/>
 			<button onClick={() => {setTab("posts")}} className='postsIcon'></button>
             <button onClick={() => {setTab("requsts")}} className="requestsIcon"></button>
-            <button onClick={() => {setTab("create")}} className="createIcon"></button>
+            {/* <button onClick={() => {setTab("create")}} className="createIcon"></button> */}
 		</div>
 	);
 }
 
-export default StaffHome;
+export default ReviewerHome;
