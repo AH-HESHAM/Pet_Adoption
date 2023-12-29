@@ -17,7 +17,8 @@ import {
 
 import AdopterHome from "../SiteRoles/Adopter/UI/AdopterHome";
 import ManagerHome from "../SiteRoles/Manager/UI/ManagerHome";
-import StaffHome from "../SiteRoles/Staff/UI/StaffHome";
+import ReviewerHome from "../SiteRoles/Staff/UI/reviewerHome";
+import PublisherHome from "../SiteRoles/Staff/UI/publisherHome";
 
 
 
@@ -73,11 +74,20 @@ export const nav = [
         status: ManagerPrivilege
     },
 
-    // Staff Pages
+    // Staff reviewer Pages
     {
-        path: paths.StaffHome,
-        Title: "Staff Home",
-        element: <StaffHome />,
-        status: StaffPrivilege
+        path: paths.ReviewerHome,
+        Title: "Reviewer Home",
+        element: <ReviewerHome />,
+        status: GlobalPrivilege
+    },
+
+    // Staff reviewer Pages
+    {
+        path: paths.PublisherHome,
+        Title: "Publisher Home",
+        element: <PublisherHome />,
+        status: GlobalPrivilege
     }
+
 ]

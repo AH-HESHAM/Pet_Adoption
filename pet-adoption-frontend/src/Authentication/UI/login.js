@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './commonstyle.css';
 import { Link } from "react-router-dom";
-import { defaultPersonState, paths,AdopterPrivilege } from "../../collection";
+import { defaultPersonState, paths, AdopterPrivilege, ManagerPrivilege } from "../../collection";
 import LoginRequest from '../Service/loginRequest'
 import sec from '../Service/sec'
 import { useNavigate } from "react-router-dom";
-import {RenderRoutes} from "../../Base/RenderNavigation"
 import { GetAuthDataFn } from '../../Base/wrapper';
-import AdopterHome from '../../SiteRoles/Adopter/UI/AdopterHome';
 
 function Login(props) {
     const {setPerson} = GetAuthDataFn();
@@ -20,18 +18,30 @@ function Login(props) {
         event.preventDefault();
         // response saved in (userDetails) in localStorage
         const res = await LoginRequest(email, password, kind);
-        const userDetails = res;
-        localStorage.setItem('userDetails', JSON.stringify(userDetails));
+        localStorage.setItem('userDetails', JSON.stringify(res));
         await setPerson(defaultPersonState());
-        if(userDetails.privilege === AdopterPrivilege){
-            navigate(paths.AdopterHome)
-        }
+        rout(res.privilege)
+        
     }
+
+    const rout = (type)=>{
+        if(type === AdopterPrivilege)
+            navigate(paths.AdopterHome)
+        
+        else if(type === ManagerPrivilege)
+            navigate(paths.ManagerHome)
+
+        else
+            navigate(paths.StaffHome)
+
+    }
+
     const handle = async (event) => {
         event.preventDefault();
         const res = await sec();
         console.log(res)
     }
+
     return (
         <div className="allComponents">
             <div className="logo"></div>
@@ -68,6 +78,7 @@ function Login(props) {
             <button></button>
         </div>
     )
+
 }
 
 export default Login;
