@@ -20,9 +20,19 @@ export const paths = {
 	notFound: "*"
 }
 export const defaultPersonState = () => {
-	return {
-		isAuthorized: false,
-		username: "",
-		privilege: "",
+	const detailsSaved = JSON.parse(localStorage.getItem('userDetails'));
+	if(detailsSaved === undefined){
+		return {
+		
+			isAuthorized: false,
+			username: "",
+			privilege: "",
+		}
+	}else{
+		return {	
+			...detailsSaved,
+			isAuthorized: true
+		}
 	}
 }
+

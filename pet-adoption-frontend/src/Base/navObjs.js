@@ -10,7 +10,9 @@ import {
     GlobalPrivilege,
     InternalPrivilege,
     paths,
-    StaffPrivilege
+    StaffPrivilege,
+    ManagerPrivilege
+
 } from "../collection";
 
 import AdopterHome from "../SiteRoles/Adopter/UI/AdopterHome";
@@ -60,7 +62,7 @@ export const nav = [
         path: paths.AdopterHome,
         Title: "Adopter Home",
         element: <AdopterHome />,
-        status: ExternalPrivilege
+        status: AdopterPrivilege
     },
 
     // Manager Pages
@@ -68,7 +70,7 @@ export const nav = [
         path: paths.ManagerHome,
         Title: "Manager Home",
         element: <ManagerHome />,
-        status: ExternalPrivilege
+        status: ManagerPrivilege
     },
 
     // Staff Pages
@@ -76,6 +78,6 @@ export const nav = [
         path: paths.StaffHome,
         Title: "Staff Home",
         element: <StaffHome />,
-        status: ExternalPrivilege
+        status: StaffPrivilege
     }
 ]

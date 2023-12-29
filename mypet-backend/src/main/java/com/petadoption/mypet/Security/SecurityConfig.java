@@ -39,7 +39,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/forgetPassword").permitAll()
-                                .requestMatchers("/test").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(
