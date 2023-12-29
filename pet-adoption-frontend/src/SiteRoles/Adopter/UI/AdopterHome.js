@@ -2,7 +2,6 @@ import NavbarComponent from '../../../CommonComponents/navbar/nave';
 import PostsList from '../../../CommonComponents/Posts/Posts';
 import Profile from '../../../CommonComponents/profile/profile';
 import React, { useState } from 'react';
-import {GetAuthDataFn} from "../../../Base/wrapper"
 
 function AdopterHome(props) {
 
@@ -72,10 +71,6 @@ function AdopterHome(props) {
             healthState: "good"
         }
     ])
-    const { person } = GetAuthDataFn();
-    const [user, setUser] = useState(
-        person
-    );
 
 	// useEffect(() => {
     //     const getPosts = async () => {
@@ -85,19 +80,11 @@ function AdopterHome(props) {
     //     getPosts();
     // }, []);
 
-    // useEffect(() => {
-    //     const getUser = async () => {
-    //     const user = await getUserInfoRequest;
-    //     setListToShow(posts)
-    //     };
-    //     getUser();
-    // }, []);
-
 	return (
 		<div>
 			<NavbarComponent/>
 			<PostsList type="adopter" listToShow={listToShow}/>
-			<Profile user={user}/>
+			<Profile/>
 		</div>
 	);
 }
