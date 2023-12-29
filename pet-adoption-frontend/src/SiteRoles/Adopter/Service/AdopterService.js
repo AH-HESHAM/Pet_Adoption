@@ -2,7 +2,7 @@
  * any call to the backend should be done here
  * */
 import axios from "axios";
-import { serverHost } from "../../../../collection";
+import { serverHost } from "../../../collection";
 
 const submitAdoptionApplication = async (adopterName, contactInformation) => {
   try {
