@@ -1,0 +1,84 @@
+.postsIcon{
+    background-image: url(home.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 100%;
+    margin-left: 10px;
+    margin-top: 3px;
+    position: fixed;
+    top: 120px;
+    right: 2%;
+}
+
+.staffIcon{
+    background-image: url(stafficon.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 100%;
+    margin-left: 10px;
+    margin-top: 3px;
+    position: fixed;
+    top: 170px;
+    right: 2%;
+}
+
+.staffIcon:hover, .postsIcon:hover{
+    background-color: rgb(254, 159, 5);
+}
+
+.staffListBody{
+    position: relative;
+    left: calc(50% - 400px);
+    top: 70px;
+    border: solid rgb(254, 159, 5) 2px;
+    background-color: antiquewhite;
+    font-size: 20px;
+}
+
+td{
+    border: solid rgb(254, 159, 5) 2px;
+    padding: 5px;
+}
+
+td button{
+    background-color: transparent;
+    border: none;
+    color: red;
+}
+
+td button:hover{
+    color: brown;
+}
+
+
+
+.confirmFireForm{
+    background-color: rgb(250, 210, 51);
+    font-size: 18px;
+    padding: 5px;
+}
+
+.fireYes,.fireNo{
+    height:4vh;
+    border-radius: .5rem;
+    color: white;
+    background-color: rgb(254, 159, 5);
+    font-size: 18px;
+    font-weight: 530;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 15px;
+} 
+
+.fireYes:hover{
+    background-color: red;
+}
+
+.fireNo:hover{
+    background-color: green;
+}
