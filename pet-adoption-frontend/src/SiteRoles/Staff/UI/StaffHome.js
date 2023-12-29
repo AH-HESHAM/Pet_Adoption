@@ -82,6 +82,7 @@ function StaffHome(props) {
 			<Profile/>
 			<button onClick={() => {setTab("posts")}} className='postsIcon'></button>
             <button onClick={() => {setTab("requsts")}} className="requestsIcon"></button>
+            <button onClick={() => {setTab("create")}} className="createIcon"></button>
 		</div>
 	);
 }

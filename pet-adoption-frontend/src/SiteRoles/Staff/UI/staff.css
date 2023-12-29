@@ -1,5 +1,5 @@
-.requestsIcon{
-    background-image: url(pencil.png);
+.requestsIcon,
+.createIcon{
     background-size: cover;
     background-repeat: no-repeat;
     width: 40px;
@@ -9,10 +9,23 @@
     margin-left: 10px;
     margin-top: 3px;
     position: fixed;
-    top: 170px;
     right: 2%;
+    
+
 }
 
-.requestsIcon:hover{
+.requestsIcon{
+    background-image: url(request.png);
+    top: 170px;
+}
+
+.createIcon{
+    background-image: url(pencil.png);
+    top: 220px;
+}
+
+
+
+.requestsIcon:hover, .createIcon:hover{
     background-color: rgb(254, 159, 5);
 }
