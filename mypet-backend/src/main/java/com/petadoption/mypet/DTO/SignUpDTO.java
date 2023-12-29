@@ -1,6 +1,7 @@
 package com.petadoption.mypet.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.petadoption.mypet.Enum.Role;
 import lombok.Data;
 
 @Data
@@ -10,6 +11,12 @@ public class SignUpDTO {
     private String email;
     private String password;
     private String phone;
-    private String address;
-    private String city;
+    private Role role;
+    private String worksFor; // for manager and staff
+    //for managers
+    private String shelterAddress;
+    private String shelterPhone;
+    //for staff
+    private int managerId;
+    private int shelterId;
 }

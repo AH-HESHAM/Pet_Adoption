@@ -35,24 +35,11 @@ public class RegistrationController {
         emailSender.sendEmail(emailDetails);
         return new ResponseEntity<>("sent", HttpStatus.OK);
     }
-//    @PostMapping("/signup")
-//    public ResponseEntity<?> signup() {
-//        User user = new User().setAddress("victoria")
-//                .setCity("alex").setName("mohamed").setEmail("alsayedm12@gmail.com")
-//                .setPassword("zzzzzzzzz").setPhone("0123456789");
-//
-//        return new ResponseEntity<>( userRepository.save(user), HttpStatus.OK);
-//    }
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody SignUpDTO signUpDTO) {
-        System.out.println("hamo");
+        System.out.println("In sign up controller - Email : " + signUpDTO.getEmail());
         return new ResponseEntity<>(registrationService.registerUser(signUpDTO), HttpStatus.OK);
     }
-//    @PostMapping("/signin")
-//    public ResponseEntity<?> signin(@RequestBody SignInDTO signInDTO) {
-//        return new ResponseEntity<>(registrationService.signIn(signInDTO.getEmail(), signInDTO.getPassword()),
-//                HttpStatus.OK);
-//    }
     //TODO : Handle unchecked exception caused by auth manager
     @PostMapping("/signin")
     public ResponseEntity<?> signIn(@RequestBody LogInRequestDTO login,
@@ -61,6 +48,10 @@ public class RegistrationController {
                 + " Password : " + login.getPassword());
         return new ResponseEntity<LogInResponseDTO>(registrationService.signIn(login, response),
                 HttpStatus.OK);
+    }
+    @GetMapping("/shelters")
+    public ResponseEntity<?> getShelters() {
+        return new ResponseEntity<>(registrationService.getShelters(), HttpStatus.OK);
     }
 
     @GetMapping("/test")
