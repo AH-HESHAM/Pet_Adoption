@@ -19,7 +19,7 @@ public class AdoptionApplicationController {
     @Autowired
     private AdoptionApplicationService adoptionApplicationService;
 
-    //@PreAuthorize("hasRole('ADOPTER')")
+    @PreAuthorize("hasRole('ADOPTER')")
     @PostMapping("/submit-application")
     public ResponseEntity<String> submitAdoptionApplication(@RequestBody AdoptionApplicationDTO adoptionApplicationDTO) {
 
