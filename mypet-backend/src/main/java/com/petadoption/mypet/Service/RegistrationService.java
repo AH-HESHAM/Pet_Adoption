@@ -30,9 +30,9 @@ public class RegistrationService {
     private JwtService jwtService;
 
     public String registerUser(SignUpDTO signUpDTO) {
-//        if(userRepository.existsByEmail(signUpDTO.getEmail())) {
-//            throw new RuntimeException("User already exists");
-//        }
+        if(userRepository.existsByEmail(signUpDTO.getEmail())) {
+            return "User already exists";
+        }
         User user = new User().setFirstName(signUpDTO.getFirstName())
                 .setLastName(signUpDTO.getLastName())
                 .setEmail(signUpDTO.getEmail())
@@ -62,7 +62,8 @@ public class RegistrationService {
         User user = userRepository.findByEmail(login.getEmail()).orElseThrow(() -> new RuntimeException("User not found"));
         return new LogInResponseDTO().setId(user.getId()).setEmail(user.getEmail())
                 .setName(user.getFirstName() + " " + user.getLastName())
-                .setJwtToken(jwtToken);
+                .setJwtToken(jwtToken)
+                .setRole(user.getRole().toString().substring(5));
     }
 
 

@@ -1,5 +1,6 @@
 package com.petadoption.mypet.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -9,5 +10,7 @@ public class LogInResponseDTO {
     private int id;
     private String name;
     private String email;
+    private String role;
+    @JsonIgnore
     private String jwtToken;
 }
