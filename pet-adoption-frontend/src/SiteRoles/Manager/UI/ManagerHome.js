@@ -72,15 +72,6 @@ function ManagerHome(props) {
         }
     ])
 
-	const [user, setUser] = useState(
-        {
-            email: "ahmed@gmail,com",
-            fname: "Ahmed",
-            lname: "Hesham",
-            phone: "01234567890"
-        }
-    );
-
 	const [staffList, setStaffList] = useState(
 		[{
             id: 1,
@@ -142,7 +133,7 @@ function ManagerHome(props) {
 			<NavbarComponent/>
             <div className='logo listLogo'></div>
 			{tab === "posts" && <PostsList type="manager" listToShow={listToShow}/>}
-			<Profile user={user}/>
+			<Profile/>
             <button onClick={() => {setTab("posts")}} className='postsIcon'></button>
             <button onClick={() => {setTab("staff")}} className="staffIcon"></button>
             {tab === "staff" &&

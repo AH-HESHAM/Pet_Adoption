@@ -78,6 +78,6 @@ export const nav = [
         path: paths.StaffHome,
         Title: "Staff Home",
         element: <StaffHome />,
-        status: StaffPrivilege
+        status: GlobalPrivilege
     }
 ]

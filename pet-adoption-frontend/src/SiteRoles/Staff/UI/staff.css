@@ -1,0 +1,18 @@
+.requestsIcon{
+    background-image: url(pencil.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 100%;
+    margin-left: 10px;
+    margin-top: 3px;
+    position: fixed;
+    top: 170px;
+    right: 2%;
+}
+
+.requestsIcon:hover{
+    background-color: rgb(254, 159, 5);
+}
