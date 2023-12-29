@@ -1,12 +1,12 @@
 export const GlobalPrivilege = "global";
 export const ExternalPrivilege = "external";
 export const InternalPrivilege = "internal";
-export const ManagerPrivilege = "manager";
-export const AdopterPrivilege = "adopter";
-export const StaffPrivilege = "staff";
+export const ManagerPrivilege = "MANAGER";
+export const AdopterPrivilege = "ADOPTER";
+export const StaffPrivilege = "STAFF";
 export const serverHost = "http://localhost:8080";
 export const paths = {
-	login: "/",
+	login: "/login",
 	logout: "/logout",
 	signup: "/signup",
 	forgetPassword: "/forgetPassword",

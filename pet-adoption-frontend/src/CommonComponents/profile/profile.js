@@ -41,9 +41,9 @@ const Profile = (props)=>{
                 <div className='profileBody'>
                     <div className='profileInfo'>
                         <p>{props.user.email}</p>
-                        <p>{props.user.fname}</p>
-                        <p>{props.user.lname}</p>
-                        <p>{props.user.phone}</p>
+                        <p>{props.user.name}</p>
+                        {/* <p>{props.user.lname}</p> */}
+                        {/* <p>{props.user.phone}</p> */}
                     </div>
                     <button className='btnEditProfile' onClick={handleShowEdit} >Edit profile</button>
                 </div>

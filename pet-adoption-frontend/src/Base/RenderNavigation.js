@@ -10,7 +10,7 @@ import {ExternalPrivilege, GlobalPrivilege, InternalPrivilege} from "../collecti
 
 export const RenderRoutes = () => {
     const { person } = GetAuthDataFn();
-    console.log('rendering ' + person);
+    console.log(person);
 
     function jsxRoute (r, i) {
         return <Route key={i} path={r.path} element={r.element}/>

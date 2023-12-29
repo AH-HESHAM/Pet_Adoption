@@ -63,7 +63,7 @@ public class RegistrationService {
         return new LogInResponseDTO().setId(user.getId()).setEmail(user.getEmail())
                 .setName(user.getFirstName() + " " + user.getLastName())
                 .setJwtToken(jwtToken)
-                .setRole(user.getRole().toString().substring(5));
+                .setPrivilege(user.getRole().toString().substring(5));
     }
 
 

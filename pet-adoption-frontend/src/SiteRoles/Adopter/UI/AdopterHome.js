@@ -2,6 +2,7 @@ import NavbarComponent from '../../../CommonComponents/navbar/nave';
 import PostsList from '../../../CommonComponents/Posts/Posts';
 import Profile from '../../../CommonComponents/profile/profile';
 import React, { useState } from 'react';
+import {GetAuthDataFn} from "../../../Base/wrapper"
 
 function AdopterHome(props) {
 
@@ -71,14 +72,9 @@ function AdopterHome(props) {
             healthState: "good"
         }
     ])
-
+    const { person } = GetAuthDataFn();
     const [user, setUser] = useState(
-        {
-            email: "ahmed@gmail,com",
-            fname: "Ahmed",
-            lname: "Hesham",
-            phone: "01234567890"
-        }
+        person
     );
 
 	// useEffect(() => {

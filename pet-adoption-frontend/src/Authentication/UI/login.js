@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './commonstyle.css';
 import { Link } from "react-router-dom";
-import { paths } from "../../collection";
+import { defaultPersonState, paths,AdopterPrivilege } from "../../collection";
 import LoginRequest from '../Service/loginRequest'
 import sec from '../Service/sec'
 import { useNavigate } from "react-router-dom";
+import {RenderRoutes} from "../../Base/RenderNavigation"
+import { GetAuthDataFn } from '../../Base/wrapper';
+import AdopterHome from '../../SiteRoles/Adopter/UI/AdopterHome';
+
 function Login(props) {
+    const {setPerson} = GetAuthDataFn();
     const navigate = useNavigate();
     const [kind, setKind] = useState("ADOPTER");
     const [email, setEmail] = useState("");
@@ -15,15 +20,12 @@ function Login(props) {
         event.preventDefault();
         // response saved in (userDetails) in localStorage
         const res = await LoginRequest(email, password, kind);
-
         const userDetails = res;
-
         localStorage.setItem('userDetails', JSON.stringify(userDetails));
-
-        const detailsSaved = JSON.parse(localStorage.getItem('userDetails'));
-        console.log("userDetaels after saving : ");
-        console.log(detailsSaved)
-
+        await setPerson(defaultPersonState());
+        if(userDetails.privilege === AdopterPrivilege){
+            navigate(paths.AdopterHome)
+        }
     }
     const handle = async (event) => {
         event.preventDefault();
