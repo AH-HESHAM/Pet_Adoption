@@ -9,19 +9,24 @@ import com.petadoption.mypet.DTO.AdoptionApplicationDTO;
 import com.petadoption.mypet.Model.Entity.AdoptionApplication;
 import com.petadoption.mypet.Service.AdoptionApplicationService;
 
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.NonNull;
+
 @RestController
-@RequestMapping("/security")
+@CrossOrigin
+@RequestMapping("/adoption")
 public class AdoptionApplicationController {
 
     @Autowired
     private AdoptionApplicationService adoptionApplicationService;
 
-    @PreAuthorize("hasRole('ADOPTER')")
+    //@PreAuthorize("hasRole('ADOPTER')")
     @PostMapping("/submit-application")
     public ResponseEntity<String> submitAdoptionApplication(@RequestBody AdoptionApplicationDTO adoptionApplicationDTO) {
-        
+
+        System.out.println(adoptionApplicationDTO);
         AdoptionApplication adoptionApplication = convertToEntity(adoptionApplicationDTO);
-        
+        System.out.println(adoptionApplication);
         adoptionApplicationService.processAdoptionApplication(adoptionApplication);
 
         return ResponseEntity.ok("Adoption application submitted successfully");
@@ -34,4 +39,9 @@ public class AdoptionApplicationController {
                 adoptionApplicationDTO.getApplicationStatus()
         );
     }
+
+    // @GetMapping("/test")
+    // public ResponseEntity<String> test() {
+    //     return ResponseEntity.ok("Test");
+    // }
 }

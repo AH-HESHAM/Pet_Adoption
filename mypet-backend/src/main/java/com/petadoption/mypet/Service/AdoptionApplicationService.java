@@ -10,14 +10,11 @@ import com.petadoption.mypet.Model.Repository.AdoptionApplicationRepository;
 @Service
 public class AdoptionApplicationService {
 
-    private final AdoptionApplicationRepository adoptionApplicationRepository;
-
     @Autowired
-    public AdoptionApplicationService(AdoptionApplicationRepository adoptionApplicationRepository) {
-        this.adoptionApplicationRepository = adoptionApplicationRepository;
-    }
+    private AdoptionApplicationRepository adoptionApplicationRepository;
 
     public void processAdoptionApplication(AdoptionApplication adoptionApplication) {
+        System.out.println(adoptionApplication);
         adoptionApplicationRepository.save(adoptionApplication);
     }
 

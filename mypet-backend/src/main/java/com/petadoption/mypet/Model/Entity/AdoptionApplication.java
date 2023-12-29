@@ -10,7 +10,7 @@ import lombok.*;
 public class AdoptionApplication {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String adopterName;
@@ -21,6 +21,12 @@ public class AdoptionApplication {
         PENDING, APPROVED, REJECTED
     }
 
+    public AdoptionApplication() {
+    }
+
     public AdoptionApplication(String adopterName2, String contactInformation2, ApplicationStatus applicationStatus2) {
+        this.adopterName = adopterName2;
+        this.contactInformation = contactInformation2;
+        this.applicationStatus = applicationStatus2;
     }
 }

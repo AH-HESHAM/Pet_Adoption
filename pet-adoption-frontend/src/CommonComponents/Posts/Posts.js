@@ -1,8 +1,19 @@
+import { useState } from 'react';
 import './postStyle.css';
+import Application from '../Application/Application'
+import {Modal,Button} from 'react-bootstrap';
 
 const PostsList = (props)=>{
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => { setIsModalOpen(true) };
+    const closeModal = () => { setIsModalOpen(false) };
+
+    
+    
     return(
+        <>
         <div>
             <div className='logo listLogo'></div>
             <div className="allPosts">
@@ -71,12 +82,15 @@ const PostsList = (props)=>{
                             <label className='postInfo'>{value.healthState}</label>
                         </div>
                         
-                        {props.type === "adopter" && <button className='listBtn'>Request Adoption</button>}
+                        {props.type === "adopter" && <button className='listBtn' onClick={openModal}>Request Adoption</button>}
                     </div>
                     
                 ))}
             </div>
         </div>
+        
+        {<Application closeModal={closeModal} isOpen={isModalOpen}/>}
+        </>
     )
 }
 export default PostsList
