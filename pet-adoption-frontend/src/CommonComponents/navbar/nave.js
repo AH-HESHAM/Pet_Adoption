@@ -46,19 +46,23 @@ const NavbarComponent = () => {
     setShowFilterModal(false);
   };
 
-  const handleVaccinationChange = (vaccination) => {
-    const updatedVaccinations = [...vaccinationFilter];
-  
-    if (updatedVaccinations.includes(vaccination)) {
-      // Remove the vaccination if it's already selected
-      const index = updatedVaccinations.indexOf(vaccination);
-      updatedVaccinations.splice(index, 1);
+  const handleVaccinationChange = (vaccinationType) => {
+    if (vaccinationType === "none") {
+      // If "None" is selected, unselect all other vaccinations
+      setVaccinationFilter(["none"]);
     } else {
-      // Add the vaccination if it's not selected
-      updatedVaccinations.push(vaccination);
-    }
+      // If any specific vaccination is selected, toggle its state
+      const updatedFilter = vaccinationFilter.includes(vaccinationType)
+        ? vaccinationFilter.filter((type) => type !== vaccinationType)
+        : [...vaccinationFilter, vaccinationType];
   
-    setVaccinationFilter(updatedVaccinations);
+      // If "None" was previously selected, remove it
+      if (updatedFilter.includes("none")) {
+        updatedFilter.splice(updatedFilter.indexOf("none"), 1);
+      }
+  
+      setVaccinationFilter(updatedFilter);
+    }
   };
 
   return (

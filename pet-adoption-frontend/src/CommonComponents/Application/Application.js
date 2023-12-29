@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import AdoptionApplicationService from "../../SiteRoles/Adopter/Service/AdopterService";
+import { GetAuthDataFn } from "../../Base/wrapper";
 
 const AdoptionApplicationModal = (props) => {
   const [adopterName, setAdopterName] = useState("");
   const [contactInformation, setContactInformation] = useState("");
+  const { person } = GetAuthDataFn();
 
   const closeModal = () => {
     props.closeModal();
@@ -12,7 +14,13 @@ const AdoptionApplicationModal = (props) => {
 
   const submitApplication = async () => {
     try {
+        const petID = props.id
+        const adopterID = person.id
+        console.log(petID)
+        console.log(adopterID)
       await AdoptionApplicationService.submitAdoptionApplication(
+       petID,
+        adopterID,
         adopterName,
         contactInformation
       );
