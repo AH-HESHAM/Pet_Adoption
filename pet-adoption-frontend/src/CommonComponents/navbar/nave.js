@@ -46,6 +46,21 @@ const NavbarComponent = () => {
     setShowFilterModal(false);
   };
 
+  const handleVaccinationChange = (vaccination) => {
+    const updatedVaccinations = [...vaccinationFilter];
+  
+    if (updatedVaccinations.includes(vaccination)) {
+      // Remove the vaccination if it's already selected
+      const index = updatedVaccinations.indexOf(vaccination);
+      updatedVaccinations.splice(index, 1);
+    } else {
+      // Add the vaccination if it's not selected
+      updatedVaccinations.push(vaccination);
+    }
+  
+    setVaccinationFilter(updatedVaccinations);
+  };
+
   return (
     <>
       <Navbar expand="lg" className="navbar bg-body-tertiary fixed-top">
@@ -157,32 +172,28 @@ const NavbarComponent = () => {
               <Form.Label>Vaccinations</Form.Label>
               <div>
                 <Form.Check
-                  type="radio"
+                  type="checkbox"
                   label="Vaccination A"
-                  name="vaccinationFilter"
-                  checked={vaccinationFilter === "A"}
-                  onChange={() => setVaccinationFilter("A")}
+                  checked={vaccinationFilter.includes("A")}
+                  onChange={() => handleVaccinationChange("A")}
                 />
                 <Form.Check
-                  type="radio"
+                  type="checkbox"
                   label="Vaccination B"
-                  name="vaccinationFilter"
-                  checked={vaccinationFilter === "B"}
-                  onChange={() => setVaccinationFilter("B")}
+                  checked={vaccinationFilter.includes("B")}
+                  onChange={() => handleVaccinationChange("B")}
                 />
                 <Form.Check
-                  type="radio"
+                  type="checkbox"
                   label="Vaccination C"
-                  name="vaccinationFilter"
-                  checked={vaccinationFilter === "C"}
-                  onChange={() => setVaccinationFilter("C")}
+                  checked={vaccinationFilter.includes("C")}
+                  onChange={() => handleVaccinationChange("C")}
                 />
                 <Form.Check
-                  type="radio"
+                  type="checkbox"
                   label="None"
-                  name="vaccinationFilter"
-                  checked={vaccinationFilter === "none"}
-                  onChange={() => setVaccinationFilter("none")}
+                  checked={vaccinationFilter.includes("none")}
+                  onChange={() => handleVaccinationChange("none")}
                 />
               </div>
             </Form.Group>
