@@ -24,9 +24,7 @@ public class AdoptionApplicationController {
     public ResponseEntity<String> submitAdoptionApplication(@RequestBody AdoptionApplicationDTO adoptionApplicationDTO) {
 
         System.out.println(adoptionApplicationDTO);
-        AdoptionApplication adoptionApplication = convertToEntity(adoptionApplicationDTO);
-        System.out.println(adoptionApplication);
-        adoptionApplicationService.processAdoptionApplication(adoptionApplication);
+        adoptionApplicationService.processAdoptionApplication(adoptionApplicationDTO);
 
         return ResponseEntity.ok("Adoption application submitted successfully");
     }
@@ -35,7 +33,7 @@ public class AdoptionApplicationController {
         return new AdoptionApplication(
                 adoptionApplicationDTO.getAdopterName(),
                 adoptionApplicationDTO.getContactInformation(),
-                adoptionApplicationDTO.getApplicationStatus()
+                AdoptionApplication.ApplicationStatus.valueOf(adoptionApplicationDTO.getApplicationStatus())
         );
     }
 
