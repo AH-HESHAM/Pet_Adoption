@@ -3,7 +3,8 @@ export const ExternalPrivilege = "external";
 export const InternalPrivilege = "internal";
 export const ManagerPrivilege = "MANAGER";
 export const AdopterPrivilege = "ADOPTER";
-export const StaffPrivilege = "STAFF";
+export const PublisherPrivilage = "STAFF_PUBLISHER";
+export const ReviewerPrivilage = "STAFF_REVIEWER";
 export const serverHost = "http://localhost:8080";
 export const paths = {
 	login: "/login",
