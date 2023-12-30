@@ -9,4 +9,5 @@ export class user{
     managerId = ""; 
     shelterAddress = "";
     shelterPhone = "";
+    shelterId = "";
 };

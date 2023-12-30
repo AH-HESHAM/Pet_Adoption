@@ -20,6 +20,7 @@ function Signup(props) {
     const [phone, setPhone] = useState("");
     const [shelterPhone, setShelterPhone] = useState("");
     const [managerId, setManagerId] = useState("");
+    const [shelterId, setShelterId] = useState("");
     const [role, setRole] = useState("PUBLISHER");
     
     const [passMatching, setPassMatching] = useState(true)
@@ -52,6 +53,8 @@ function Signup(props) {
         curUser.shelterAddress = location;
         curUser.shelterPhone = shelterPhone;
         curUser.worksFor = shelterName;
+        curUser.shelterId = shelterId;
+        curUser.managerId = managerId;
         curUser.role = getRole();
         return curUser;
     }
@@ -82,6 +85,7 @@ function Signup(props) {
     const handleShelterName = (shelter)=>{
         setShelterName(shelter.name);
         setManagerId(shelter.managerId)
+        setShelterId(shelter.shelterId)
     }
 
     const handleConfirmPassword = (pass)=>{

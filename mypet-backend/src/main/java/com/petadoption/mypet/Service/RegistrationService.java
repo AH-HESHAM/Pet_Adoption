@@ -85,7 +85,7 @@ public class RegistrationService {
                 .setLastName(signUpDTO.getLastName())
                 .setEmail(signUpDTO.getEmail())
                 .setPassword(passwordEncoder.encode(signUpDTO.getPassword()))
-                .setPhone(signUpDTO.getPhone()).setRole(Role.ROLE_ADOPTER);
+                .setPhone(signUpDTO.getPhone()).setRole(signUpDTO.getRole());
     }
 
 

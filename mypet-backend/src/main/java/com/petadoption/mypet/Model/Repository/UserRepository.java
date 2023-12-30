@@ -50,7 +50,7 @@ public class UserRepository {
     public int save(User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         String sql = "INSERT INTO user (first_name, last_name, email, password, phone, role) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection
                     .prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

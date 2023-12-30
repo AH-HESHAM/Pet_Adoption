@@ -6,6 +6,7 @@ const SignupRequest = async (user) =>{
         const response = await axios.post(`${serverHost}/register/signup`, 
         user, 
         {withCredentials: true});
+        console.log(response.data)
         return response.data; 
     } catch (error) {
         console.error('Error Login :', error);
@@ -15,8 +16,9 @@ const SignupRequest = async (user) =>{
 
 const GetShelters = async ()=>{
     try {
-        const response = await axios.get(`${serverHost}/register/signup`,  
-        {withCredentials: true});
+        const response = await axios.get(`${serverHost}/register/shelters`,  {withCredentials: true});
+        console.log("shelters")
+        console.log(response.data)
         return response.data; 
     } catch (error) {
         console.error('Error Login :', error);
