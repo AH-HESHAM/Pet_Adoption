@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Container,
@@ -26,7 +26,7 @@ const NavbarComponent = (props) => {
   const [vaccinationFilter, setVaccinationFilter] = useState(false); // Use boolean state
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [petList, setPetList] = useState([]);
+  const [petList, setPetList] = useState(props.listToShow);
 
   const handleNotificationClick = () => {
     setShowNotification(!showNotification);
@@ -230,7 +230,7 @@ const NavbarComponent = (props) => {
           </ListGroup>
         </Modal.Body>
       </Modal>
-      {props.tab === "posts" && <PostsList type={props.type} listToShow={props.listToShow}/>}
+      {props.tab === "posts" && <PostsList type={props.type} listToShow={petList.length == 0 ? props.listToShow : petList}/>}
     </>
   );
 };

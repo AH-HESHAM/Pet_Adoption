@@ -10,7 +10,7 @@ function AdopterHome(props) {
 
 	useEffect(() => {
         const getPosts = async () => {
-            const posts = await getPostsRequest();
+            const posts = await getPostsRequest("/adopter/pets");
             setListToShow(posts)
         };
         getPosts();
