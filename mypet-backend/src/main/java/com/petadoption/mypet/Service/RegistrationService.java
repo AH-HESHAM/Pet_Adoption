@@ -63,8 +63,7 @@ public class RegistrationService {
     private void addStaff(SignUpDTO signUpDTO) {
         User user = buildUser(signUpDTO);
         int userId = userRepository.save(user);
-        staffRepository.save(userId, signUpDTO.getManagerId(), signUpDTO.getShelterId(),
-                signUpDTO.getRole().toString());
+        staffRepository.save(userId, signUpDTO.getManagerId(), signUpDTO.getShelterId());
     }
 
     private void addManager(SignUpDTO signUpDTO) {
