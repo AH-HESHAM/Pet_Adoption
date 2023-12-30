@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './commonstyle.css';
 import { Link } from "react-router-dom";
-import { defaultPersonState, paths, AdopterPrivilege, ManagerPrivilege } from "../../collection";
+import { defaultPersonState, paths, AdopterPrivilege, ManagerPrivilege, ReviewerPrivilage, PublisherPrivilage } from "../../collection";
 import LoginRequest from '../Service/loginRequest'
 import sec from '../Service/sec'
 import { useNavigate } from "react-router-dom";
@@ -31,8 +31,10 @@ function Login(props) {
         else if(type === ManagerPrivilege)
             navigate(paths.ManagerHome)
 
+        else if(type === PublisherPrivilage)
+            navigate(paths.PublisherHome)
         else
-            navigate(paths.StaffHome)
+            navigate(paths.ReviewerHome)
 
     }
 

@@ -83,13 +83,14 @@ const PostsList = (props)=>{
                         </div>
                         
                         {props.type === "adopter" && <button className='listBtn' onClick={openModal}>Request Adoption</button>}
+                        {<Application id={value.id} closeModal={closeModal} isOpen={isModalOpen}/>}
                     </div>
                     
                 ))}
             </div>
         </div>
         
-        {<Application closeModal={closeModal} isOpen={isModalOpen}/>}
+        
         </>
     )
 }

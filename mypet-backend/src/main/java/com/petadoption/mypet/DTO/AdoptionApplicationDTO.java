@@ -10,12 +10,21 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class AdoptionApplicationDTO {
+
+    private Integer petId;
+    private Integer adopterId;
     private String adopterName;
     private String contactInformation;
-    private AdoptionApplication.ApplicationStatus applicationStatus;
+    private String applicationStatus;
 
-    public AdoptionApplicationDTO(String adopterName, String contactInformation,
-            AdoptionApplication.ApplicationStatus applicationStatus) {
+    // Constructors, getters, and setters
+
+    public AdoptionApplicationDTO() {
+    }
+
+    public AdoptionApplicationDTO(int petId, int adopterId, String adopterName, String contactInformation, String applicationStatus) {
+        this.petId = petId;
+        this.adopterId = adopterId;
         this.adopterName = adopterName;
         this.contactInformation = contactInformation;
         this.applicationStatus = applicationStatus;

@@ -12,15 +12,21 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../navbar/nave.css";
 import { paths } from "../../collection";
+import {
+  searchService,
+  filterService,
+} from "../../SiteRoles/Adopter/Service/AdopterService";
 import PostsList from "../Posts/Posts"
 
 const NavbarComponent = (props) => {
   const [showNotification, setShowNotification] = useState(false);
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
-  const [houseTrainingFilter, setHouseTrainingFilter] = useState(false);
-  const [vaccinationFilter, setVaccinationFilter] = useState("none");
-  const [spayingNeuteringFilter, setSpayingNeuteringFilter] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState("");
+  const [vaccinationFilter, setVaccinationFilter] = useState(false); // Use boolean state
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [petList, setPetList] = useState([]);
 
   const handleNotificationClick = () => {
     setShowNotification(!showNotification);
@@ -38,28 +44,39 @@ const NavbarComponent = (props) => {
     setShowFilterModal(true);
   };
 
+  const handleFilterApply = async () => {
+    try {
+      console.log(vaccinationFilter);
+      const pets = await filterService(vaccinationFilter);
+      setPetList(pets);
+    } catch (e) {
+      console.log(e);
+      setShowFilterModal(false);
+    }
+  };
+
   const handleFilterModalClose = () => {
     console.log("Fetching pets with filters:", {
-      houseTrainingFilter,
       vaccinationFilter,
-      spayingNeuteringFilter,
     });
     setShowFilterModal(false);
   };
 
-  const handleVaccinationChange = (vaccination) => {
-    const updatedVaccinations = [...vaccinationFilter];
-  
-    if (updatedVaccinations.includes(vaccination)) {
-      // Remove the vaccination if it's already selected
-      const index = updatedVaccinations.indexOf(vaccination);
-      updatedVaccinations.splice(index, 1);
-    } else {
-      // Add the vaccination if it's not selected
-      updatedVaccinations.push(vaccination);
+  const handleVaccinationChange = () => {
+    // Toggle the boolean value
+    setVaccinationFilter((prevFilter) => !prevFilter);
+  };
+
+  const handleSearch = async () => {
+    console.log("Selected Filter:", selectedFilter);
+    console.log("Search Query:", searchQuery);
+    try {
+      const pets = await searchService(selectedFilter, searchQuery);
+      setPetList(pets);
+      console.log("Search Service successful");
+    } catch (error) {
+      console.error("Error Search service:", error);
     }
-  
-    setVaccinationFilter(updatedVaccinations);
   };
 
   return (
@@ -107,14 +124,28 @@ const NavbarComponent = (props) => {
                 className="d-flex"
                 style={{ minWidth: "480px", paddingLeft: "10px" }}
               >
-                {/* Added margin to the right of the search box */}
+                <Form.Select
+                  style={{ width: "180px" }}
+                  className="mr-2"
+                  onChange={(e) => setSelectedFilter(e.target.value)}
+                >
+                  <option value="">Search Category</option>
+                  <option value="species">Species</option>
+                  <option value="breed">Breed</option>
+                  <option value="age">Age</option>
+                  <option value="shelter">Shelter Location</option>
+                </Form.Select>
                 <Form.Control
                   type="text"
                   placeholder="Search"
                   className="mr-2"
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                {/* Added spacing between the search box and search button */}
-                <Button variant="outline-success" className="mr-2">
+                <Button
+                  variant="outline-success"
+                  className="mr-2"
+                  onClick={handleSearch}
+                >
                   Search
                 </Button>
               </Form>
@@ -159,15 +190,6 @@ const NavbarComponent = (props) => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            {/* Filter for house training */}
-            <Form.Check
-              style={{ marginBottom: "10px" }}
-              type="checkbox"
-              label="House Training"
-              checked={houseTrainingFilter}
-              onChange={() => setHouseTrainingFilter(!houseTrainingFilter)}
-            />
-
             {/* Filter for vaccinations */}
             <Form.Group style={{ marginBottom: "20px" }}>
               <Form.Label>Vaccinations</Form.Label>
@@ -175,43 +197,20 @@ const NavbarComponent = (props) => {
                 <Form.Check
                   type="checkbox"
                   label="Vaccination A"
-                  checked={vaccinationFilter.includes("A")}
-                  onChange={() => handleVaccinationChange("A")}
-                />
-                <Form.Check
-                  type="checkbox"
-                  label="Vaccination B"
-                  checked={vaccinationFilter.includes("B")}
-                  onChange={() => handleVaccinationChange("B")}
-                />
-                <Form.Check
-                  type="checkbox"
-                  label="Vaccination C"
-                  checked={vaccinationFilter.includes("C")}
-                  onChange={() => handleVaccinationChange("C")}
+                  checked={vaccinationFilter}
+                  onChange={handleVaccinationChange}
                 />
                 <Form.Check
                   type="checkbox"
                   label="None"
-                  checked={vaccinationFilter.includes("none")}
-                  onChange={() => handleVaccinationChange("none")}
+                  checked={!vaccinationFilter} // Inverse of vaccinationFilter for "None"
+                  onChange={handleVaccinationChange}
                 />
               </div>
             </Form.Group>
 
-            {/* Filter for spaying/neutering status */}
-            <Form.Check
-              style={{ marginBottom: "20px" }}
-              type="checkbox"
-              label="Spaying/Neutering"
-              checked={spayingNeuteringFilter}
-              onChange={() =>
-                setSpayingNeuteringFilter(!spayingNeuteringFilter)
-              }
-            />
-
             {/* Submit button for applying filters */}
-            <Button variant="primary" onClick={handleFilterButtonClick}>
+            <Button variant="primary" onClick={handleFilterApply}>
               Apply Filters
             </Button>
           </Form>

@@ -130,7 +130,7 @@ function ManagerHome(props) {
 
 	return (
 		<div>
-			<NavbarComponent tab={tab} type={"adopter"} listToShow={listToShow}/>
+			<NavbarComponent tab={tab} type={"manager"} listToShow={listToShow}/>
             <div className='logo listLogo'></div>
 			{/* {tab === "posts" && <PostsList type="manager" listToShow={listToShow}/>} */}
 			<Profile/>

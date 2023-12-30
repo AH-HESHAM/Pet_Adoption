@@ -4,11 +4,9 @@ import com.petadoption.mypet.Model.Entity.Pet;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
-public class PetDTO {
+public class PetSearchResultDTO {
 
     private Long id;
     private String name;
@@ -19,15 +17,9 @@ public class PetDTO {
     private String healthStatus;
     private String behavior;
     private String description;
-    private List<String> images;
-    private boolean vaccinations;
 
-    public PetDTO() {
-    }
-
-    public PetDTO(Long id, String name, String species, String breed, int age, String gender,
-                  String healthStatus, String behavior, String description, List<String> images,
-                  boolean vaccinations) {
+    public PetSearchResultDTO(Long id, String name, String species, String breed, int age, String gender,
+            String healthStatus, String behavior, String description) {
         this.id = id;
         this.name = name;
         this.species = species;
@@ -37,7 +29,6 @@ public class PetDTO {
         this.healthStatus = healthStatus;
         this.behavior = behavior;
         this.description = description;
-        this.images = images;
-        this.vaccinations = vaccinations;
     }
+
 }

@@ -1,5 +1,4 @@
 package com.petadoption.mypet.Model.Entity;
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,6 +14,8 @@ public class AdoptionApplication {
 
     private String adopterName;
     private String contactInformation;
+
+    @Enumerated(EnumType.STRING)  
     private ApplicationStatus applicationStatus;
 
     public enum ApplicationStatus {
@@ -24,9 +25,18 @@ public class AdoptionApplication {
     public AdoptionApplication() {
     }
 
-    public AdoptionApplication(String adopterName2, String contactInformation2, ApplicationStatus applicationStatus2) {
-        this.adopterName = adopterName2;
-        this.contactInformation = contactInformation2;
-        this.applicationStatus = applicationStatus2;
+    // Constructor without id
+    public AdoptionApplication(String adopterName, String contactInformation, ApplicationStatus applicationStatus) {
+        this.adopterName = adopterName;
+        this.contactInformation = contactInformation;
+        this.applicationStatus = applicationStatus;
+    }
+
+    // Constructor with id
+    public AdoptionApplication(Integer id, String adopterName, String contactInformation, ApplicationStatus applicationStatus) {
+        this.id = id;
+        this.adopterName = adopterName;
+        this.contactInformation = contactInformation;
+        this.applicationStatus = applicationStatus;
     }
 }
