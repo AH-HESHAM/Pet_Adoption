@@ -20,14 +20,14 @@ public class PetDTO {
     private String behavior;
     private String description;
     private List<String> images;
-    private List<String> vaccinations;
+    private boolean vaccinations;
 
     public PetDTO() {
     }
 
     public PetDTO(Long id, String name, String species, String breed, int age, String gender,
                   String healthStatus, String behavior, String description, List<String> images,
-                  List<String> vaccinations) {
+                  boolean vaccinations) {
         this.id = id;
         this.name = name;
         this.species = species;
