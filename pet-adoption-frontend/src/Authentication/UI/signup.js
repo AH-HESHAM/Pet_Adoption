@@ -149,9 +149,9 @@ function Signup(props) {
                         </select>
 
                         {/* list of shelters in system */}
-                        <select onChange={(e) => handleShelterName(e.target.value)} className="input">
-                            {allShelters.map((shelter) => (
-                                <option key={shelter.name} value={[shelter.shelterId, shelter.managerId, shelter.name]}>{"Works for: " + shelter.name}</option>
+                        <select onChange={(e) => handleShelterName(JSON.parse(e.target.value))} className="input">
+                                            {allShelters.map((shelter) => (
+                                <option key={shelter.name} value={JSON.stringify([shelter.shelterId, shelter.managerId, shelter.name])}>{"Works for: " + shelter.name}</option>
                             ))}
                         </select>
                     </>
