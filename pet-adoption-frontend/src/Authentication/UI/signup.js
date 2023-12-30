@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import {useState} from "react";
+import {Link} from "react-router-dom";
 import './commonstyle.css';
 import React from 'react';
-import { paths } from "../../collection";
+import {paths} from "../../collection";
 import { user } from "../User";
-import { SignupRequest, GetShelters } from "../Service/signupService"
+import {SignupRequest, GetShelters} from "../Service/signupService"
 import { useNavigate } from "react-router-dom";
 
 function Signup(props) {
@@ -22,28 +22,28 @@ function Signup(props) {
     const [managerId, setManagerId] = useState("0");
     const [shelterId, setShelterId] = useState("0");
     const [role, setRole] = useState("PUBLISHER");
-
+    
     const [passMatching, setPassMatching] = useState(true)
-
+    
     const [allShelters, setAllShelters] = useState([])
 
     const navigate = useNavigate();
 
-    const handleSignup = async (event) => {
+    const handleSignup = async (event)=>{
         event.preventDefault();
-        if (password === confirmPassword) {
+        if(password === confirmPassword){
             setPassMatching(true)
             // need routing
             const res = await SignupRequest(createUser());
-            if (res === "User registered successfully")
+            if(res === "User registered successfully")
                 navigate(paths.login)
         }
-        else {
+        else{
             setPassMatching(false);
         }
     }
 
-    const createUser = () => {
+    const createUser = () =>{
         let curUser = new user();
         curUser.email = email;
         curUser.firstName = firstNmae;
@@ -58,49 +58,42 @@ function Signup(props) {
         curUser.role = getRole();
         return curUser;
     }
-
-    const getRole = () => {
-        if (kind === "ADOPTER")
+ 
+    const getRole = () =>{
+        if(kind === "ADOPTER")
             return "ROLE_ADOPTER"
 
-        if (kind === "MANAGER")
+        if(kind === "MANAGER")
             return "ROLE_MANAGER"
 
-        if (kind === "STAFF" && role === "REVIEWER")
+        if(kind === "STAFF" && role === "REVIEWER")
             return "ROLE_STAFF_REVIEWER"
 
-        if (kind === "STAFF" && role === "PUBLISHER")
-            return "ROLE_STAFF_PUBLISHER"
+        if(kind === "STAFF" && role === "PUBLISHER")
+        return "ROLE_STAFF_PUBLISHER"
     }
 
-    const handleRoleChange = async (role) => {
+    const handleRoleChange = async (role)=>{
         setKind(role)
-        if (role === "STAFF") {
-            console.log("hhhhhhhhhhhhhhhhhhhhhhhhh")
+        if(role === "STAFF"  ){
             // need request from backend
             const res = await GetShelters();
-            console.log("list")
-            console.log(res)
             setAllShelters(res);
-            // console.log("aloooo")
-            // console.log(allShelters)
         }
     }
 
-    const handleShelterName = (shelter) => {
-        console.log("shelter")
-        console.log(shelter[1])
+    const handleShelterName = (shelter)=>{
         setShelterName(shelter[2]);
         setManagerId(shelter[1])
         setShelterId(shelter[0])
     }
 
-    const handleConfirmPassword = (pass) => {
+    const handleConfirmPassword = (pass)=>{
         setConfirmPassword(pass)
         setPassMatching(pass === password)
     }
 
-    return (
+    return(
         <div className="allComponents">
             <div className="logo"></div>
             <form className="form" onSubmit={handleSignup}>
@@ -114,33 +107,33 @@ function Signup(props) {
 
                 {/* main info for all users */}
                 <input className="input"
-                    placeholder="E-mail as name@example.com"
-                    type="email" required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                       placeholder="E-mail as name@example.com"
+                       type="email" required
+                       value={email}
+                       onChange={(e) => setEmail(e.target.value)}
                 />
-
+                
                 <input className="input"
-                    placeholder="First name"
-                    required
-                    value={firstNmae}
-                    onChange={(e) => setFirstName(e.target.value)}
-                />
-                <input className="input"
-                    placeholder="Last name"
-                    required
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
+                        placeholder="First name"
+                        required
+                        value={firstNmae}
+                        onChange={(e) => setFirstName(e.target.value)}
                 />
                 <input className="input"
-                    placeholder="Phone number"
-                    required
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                        placeholder="Last name"
+                        required
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                />
+                <input className="input"
+                       placeholder="Phone number"
+                       required
+                       value={phone}
+                       onChange={(e) => setPhone(e.target.value)}
                 />
 
                 {/* only for staff */}
-                {kind === "STAFF" &&
+                { kind === "STAFF" &&
                     <>
                         {/* rols */}
                         <select onChange={(e) => setRole(e.target.value)} className="input">
@@ -150,27 +143,27 @@ function Signup(props) {
 
                         {/* list of shelters in system */}
                         <select onChange={(e) => handleShelterName(JSON.parse(e.target.value))} className="input">
-                            {allShelters.map((shelter) => (
+                                            {allShelters.map((shelter) => (
                                 <option key={shelter.name} value={JSON.stringify([shelter.shelterId, shelter.managerId, shelter.name])}>{"Works for: " + shelter.name}</option>
                             ))}
-                        </select>   
+                        </select>
                     </>
                 }
 
                 {/* only for Manager */}
-                {kind === "MANAGER" &&
+                { kind === "MANAGER" &&
                     <>
                         <input className="input"
-                            placeholder="Shelter name"
-                            required
-                            value={shelterName}
-                            onChange={(e) => setShelterName(e.target.value)}
+                               placeholder="Shelter name"
+                               required
+                               value={shelterName}
+                               onChange={(e) => setShelterName(e.target.value)}
                         />
                         <input className="input"
-                            placeholder="Shelter Location"
-                            required
-                            value={location}
-                            onChange={(e) => setLocation(e.target.value)}
+                               placeholder="Shelter Location"
+                               required
+                               value={location}
+                               onChange={(e) => setLocation(e.target.value)}
                         />
                         <input className="input"
                             placeholder="Shelter phone number"
@@ -183,16 +176,16 @@ function Signup(props) {
 
                 {/* for all users */}
                 <input className="input"
-                    placeholder="Create password"
-                    type="password" required minLength={8}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                       placeholder="Create password"
+                       type="password" required minLength={8}
+                       value={password}
+                       onChange={(e) => setPassword(e.target.value)}
                 />
                 <input className="input"
-                    placeholder="Re-enter password"
-                    type="password" required minLength={8}
-                    value={confirmPassword}
-                    onChange={(e) => handleConfirmPassword(e.target.value)}
+                       placeholder="Re-enter password"
+                       type="password" required minLength={8}
+                       value={confirmPassword}
+                       onChange={(e) => handleConfirmPassword(e.target.value)}
                 />
 
                 {!passMatching && <p className="error">Passwords are not matching</p>}

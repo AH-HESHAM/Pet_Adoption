@@ -49,7 +49,7 @@ const Profile = ()=>{
                         {/* <p>{props.user.lname}</p> */}
                         {/* <p>{props.user.phone}</p> */}
                     </div>
-                    <button className='btnEditProfile' onClick={handleShowEdit} >Edit profile</button>
+                    {/* <button className='btnEditProfile' onClick={handleShowEdit} >Edit profile</button> */}
                 </div>
             }
             {showEdit &&

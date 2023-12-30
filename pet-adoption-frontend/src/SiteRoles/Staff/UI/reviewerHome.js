@@ -77,8 +77,8 @@ function ReviewerHome(props) {
 
 	return (
 		<div>
-			<NavbarComponent/>
-			{tab === "posts" && <PostsList type="staff" listToShow={listToShow}/>}
+			<NavbarComponent tab={tab} type={"adopter"} listToShow={listToShow}/>
+			{/* {tab === "posts" && <PostsList type="staff" listToShow={listToShow}/>} */}
 			<Profile/>
 			<button onClick={() => {setTab("posts")}} className='postsIcon'></button>
             <button onClick={() => {setTab("requsts")}} className="requestsIcon"></button>

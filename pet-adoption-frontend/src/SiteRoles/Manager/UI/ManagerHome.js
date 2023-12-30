@@ -130,9 +130,9 @@ function ManagerHome(props) {
 
 	return (
 		<div>
-			<NavbarComponent/>
+			<NavbarComponent tab={tab} type={"adopter"} listToShow={listToShow}/>
             <div className='logo listLogo'></div>
-			{tab === "posts" && <PostsList type="manager" listToShow={listToShow}/>}
+			{/* {tab === "posts" && <PostsList type="manager" listToShow={listToShow}/>} */}
 			<Profile/>
             <button onClick={() => {setTab("posts")}} className='postsIcon'></button>
             <button onClick={() => {setTab("staff")}} className="staffIcon"></button>

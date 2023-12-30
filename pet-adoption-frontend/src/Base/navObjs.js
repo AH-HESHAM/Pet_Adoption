@@ -79,7 +79,7 @@ export const nav = [
         path: paths.ReviewerHome,
         Title: "Reviewer Home",
         element: <ReviewerHome />,
-        status: GlobalPrivilege
+        status: StaffPrivilege
     },
 
     // Staff reviewer Pages
@@ -87,7 +87,7 @@ export const nav = [
         path: paths.PublisherHome,
         Title: "Publisher Home",
         element: <PublisherHome />,
-        status: GlobalPrivilege
+        status: StaffPrivilege
     }
 
 ]
