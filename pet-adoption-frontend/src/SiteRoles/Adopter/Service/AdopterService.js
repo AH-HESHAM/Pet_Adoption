@@ -4,10 +4,15 @@
 import axios from "axios";
 import { serverHost } from "../../../collection";
 
-const submitAdoptionApplication = async (petID,adopterID,adopterName, contactInformation  ) => {
+const submitAdoptionApplication = async (
+  petID,
+  adopterID,
+  adopterName,
+  contactInformation
+) => {
   try {
-    console.log("adopter id = " +adopterID)
-    console.log("pet id = " + petID)
+    console.log("adopter id = " + adopterID);
+    console.log("pet id = " + petID);
     const response = await axios.post(
       `${serverHost}/adoption/submit-application`,
       {
@@ -21,7 +26,7 @@ const submitAdoptionApplication = async (petID,adopterID,adopterName, contactInf
         withCredentials: true,
       }
     );
- 
+
     console.log("API Response:", response.data);
     return response.data;
   } catch (error) {
@@ -31,25 +36,43 @@ const submitAdoptionApplication = async (petID,adopterID,adopterName, contactInf
 };
 
 const searchService = async (selectedFilter, searchQuery) => {
-    try {
-        const response = await axios.post(
-            `${serverHost}/search/apply`,  
-            {
-              selectedFilter,
-              searchQuery,
-            },
-            {
-              withCredentials: true,
-            }
-          );
-          console.log("API Response:", response.data);
-        } catch (error) {
-          console.error("Error performing search:", error);
-        }
+  try {
+    const response = await axios.post(
+      `${serverHost}/search/apply`,
+      {
+        selectedFilter,
+        searchQuery,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+    console.log("API Response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error performing search:", error);
+  }
 };
 
+const filterService = async (
+  vaccinationFilter
+) => {
+    const dummy = "dummy"
+  try {
+    const response = await axios.post(
+      `${serverHost}/filter/apply`,
+      {
+        vaccinationFilter
+      },
+      {
+        withCredentials: true,
+      }
+    );
+    console.log("API Response:", response.data);
+    return response.data;
+  } catch {
+    console.error("Error performing filter:");
+  }
+};
 
-
-
-export { submitAdoptionApplication, searchService };
-
+export { submitAdoptionApplication, searchService, filterService };
