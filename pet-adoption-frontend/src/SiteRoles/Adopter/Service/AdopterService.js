@@ -2,13 +2,17 @@
  * any call to the backend should be done here
  * */
 import axios from "axios";
-import { serverHost } from "../../../../collection";
+import { serverHost } from "../../../collection";
 
-const submitAdoptionApplication = async (adopterName, contactInformation) => {
+const submitAdoptionApplication = async (petID,adopterID,adopterName, contactInformation  ) => {
   try {
+    console.log("adopter id = " +adopterID)
+    console.log("pet id = " + petID)
     const response = await axios.post(
       `${serverHost}/adoption/submit-application`,
       {
+        petId: petID,
+        adopterId: adopterID,
         adopterName,
         contactInformation,
         applicationStatus: "PENDING",
@@ -17,6 +21,7 @@ const submitAdoptionApplication = async (adopterName, contactInformation) => {
         withCredentials: true,
       }
     );
+ 
     console.log("API Response:", response.data);
     return response.data;
   } catch (error) {
@@ -24,8 +29,27 @@ const submitAdoptionApplication = async (adopterName, contactInformation) => {
     throw error;
   }
 };
-const AdoptionApplicationService = {
-  submitAdoptionApplication,
+
+const searchService = async (selectedFilter, searchQuery) => {
+    try {
+        const response = await axios.post(
+            `${serverHost}/search/apply`,  
+            {
+              selectedFilter,
+              searchQuery,
+            },
+            {
+              withCredentials: true,
+            }
+          );
+          console.log("API Response:", response.data);
+        } catch (error) {
+          console.error("Error performing search:", error);
+        }
 };
 
-export default AdoptionApplicationService;
+
+
+
+export { submitAdoptionApplication, searchService };
+
