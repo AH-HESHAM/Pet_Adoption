@@ -59,7 +59,7 @@ public class UserRepository {
             ps.setString(3, user.getEmail());
             ps.setString(4, user.getPassword());
             ps.setString(5, user.getPhone());
-            ps.setString(6, user.getRole().name());
+            ps.setString(6, user.getRole().toString());
             return ps;
         }, keyHolder);
 
