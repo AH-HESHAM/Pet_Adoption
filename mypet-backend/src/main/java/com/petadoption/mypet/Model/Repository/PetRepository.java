@@ -7,16 +7,24 @@ import org.springframework.stereotype.Repository;
 import com.petadoption.mypet.DTO.PetDTO;
 import com.petadoption.mypet.Model.Entity.Pet;
 import com.petadoption.mypet.Utility.PetRowMapper;
+
+import java.sql.PreparedStatement;
 import java.util.List;
 
 @Repository
 public class PetRepository {
 
     private final JdbcTemplate jdbcTemplate;
+    private UtilityRepository utilityRepository;
 
     @Autowired
     public PetRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Autowired
+    public void setUtilityRepository(UtilityRepository utilityRepository) {
+        this.utilityRepository = utilityRepository;
     }
 
     public List<PetDTO> searchPetsBySpecies(String searchQuery) {
@@ -61,6 +69,35 @@ public class PetRepository {
 
         // Execute the query and return the result
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PetDTO.class));
+    }
+
+
+    // used by adopter
+    public List<PetDTO> getAllPets() {
+        String sql = "SELECT * FROM pets";
+        return jdbcTemplate.query(sql, new PetRowMapper());
+    }
+
+    //for the manager
+    public List<PetDTO> getAllPetsForManager(int managerId) {
+        int shelterId = utilityRepository.managerIdToShelterId(managerId);
+        String sql = "SELECT * FROM pets WHERE shelter_id = ?";
+
+        return jdbcTemplate.query(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, shelterId);
+            return ps;
+        }, new PetRowMapper());
+    }
+    //for the staff
+    public List<PetDTO> getAllPetsForStaff(int staffId) {
+        int shelterId = utilityRepository.staffIdToShelterId(staffId);
+        String sql = "SELECT * FROM pets WHERE shelter_id = ?";
+        return jdbcTemplate.query(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, shelterId);
+            return ps;
+        }, new PetRowMapper());
     }
 
 }

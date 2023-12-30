@@ -16,8 +16,9 @@ import {
   searchService,
   filterService,
 } from "../../SiteRoles/Adopter/Service/AdopterService";
+import PostsList from "../Posts/Posts"
 
-const NavbarComponent = () => {
+const NavbarComponent = (props) => {
   const [showNotification, setShowNotification] = useState(false);
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
@@ -229,6 +230,7 @@ const NavbarComponent = () => {
           </ListGroup>
         </Modal.Body>
       </Modal>
+      {props.tab === "posts" && <PostsList type={props.type} listToShow={props.listToShow}/>}
     </>
   );
 };
