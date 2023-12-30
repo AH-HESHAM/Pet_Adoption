@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import { Post } from "./post";
+import { GetAuthDataFn } from '../../../Base/wrapper';
+import { publish } from "../Service/StaffService";
 
 const PostCreator = (props) => {
 	const [name, setName] = useState("");
@@ -13,24 +16,37 @@ const PostCreator = (props) => {
 	const [vaccinations, setVaccinations] = useState("");
 	const [behavior, setBehavior] = useState("");
 	const [healthState, setHealthState] = useState("");
+	const {person} = GetAuthDataFn();
 	
 	const closeModal = () => {
 		props.closeModal();
 	};
 
+	const creatPost = () =>{
+		let post = new Post();
+		post.publisherId = person.id;
+		post.name = name;
+		post.species = species;
+		post.breed = breed;
+		post.age = age;
+		post.gender = gender;
+		post.healthStatus = healthState;
+		post.behavior = behavior;
+		post.description = description;
+		post.vaccinations = vaccinations;
+	}
+
 
 	const submitApplication = async () => {
-		// try {
-		//   await AdoptionApplicationService.submitAdoptionApplication(
-		//     name,
-		//     age
-		//   );
-		//   console.log("Adoption application submitted successfully");
-		// } catch (error) {
-		//   console.error("Error submitting adoption application:", error);
-		// } finally {
-		//   closeModal();
-		// }
+		let post = creatPost();
+		try {
+		  await publish(post);
+		  console.log("Adoption application submitted successfully");
+		} catch (error) {
+		  console.error("Error submitting adoption application:", error);
+		} finally {
+		  closeModal();
+		}
 	};
 
 	return (
@@ -92,24 +108,6 @@ const PostCreator = (props) => {
 				placeholder="Description"
 				value={description}
 				onChange={(e) => setDescription(e.target.value)}
-				/>
-			</Form.Group>
-
-			<Form.Group controlId="spaying">
-				<Form.Control
-				type="text"
-				placeholder="Spaying y/n"
-				value={spaying}
-				onChange={(e) => setSpaying(e.target.value)}
-				/>
-			</Form.Group>
-
-			<Form.Group controlId="houseTraining">
-				<Form.Control
-				type="text"
-				placeholder="House Training Level"
-				value={houseTraining}
-				onChange={(e) => setHouseTraining(e.target.value)}
 				/>
 			</Form.Group>
 

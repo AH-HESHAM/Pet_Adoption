@@ -4,7 +4,7 @@ import Profile from '../../../CommonComponents/profile/profile';
 import "./staff.css"
 import React, { useState, useEffect } from 'react';
 import PostCreator from "./postCreator"
-import getStaffPostsRequest from "../Service/StaffService"
+import {getStaffPostsRequest} from "../Service/StaffService"
 import { GetAuthDataFn } from '../../../Base/wrapper';
 
 function PublisherHome(props) {

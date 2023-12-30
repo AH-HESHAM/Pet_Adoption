@@ -12,6 +12,16 @@ async function getStaffPostsRequest(id) {
       console.error('Error Posts :', error);
       throw error;
     }
-  }
+  };
 
-export default getStaffPostsRequest
+  async function publish(post) {
+    try {
+      const response = await axios.post(`${serverHost}/publisherStaff/createPost`, post, { withCredentials: true });
+      return response.data;
+    } catch (error) {
+      console.error('Error Posts :', error);
+      throw error;
+    }
+  };
+
+export {getStaffPostsRequest, publish};
