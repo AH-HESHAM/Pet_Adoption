@@ -53,9 +53,10 @@ function Login(props) {
 
                 {/* user type */}
                 <select onChange={(e) => setKind(e.target.value)} className="input">
-                    <option value={"ADOPTER"}>Adopter</option>
-                    <option value={"STAFF"}>Staff</option>
-                    <option value={"MANAGER"}>Manager</option>
+                    <option value={"ROLE_ADOPTER"}>Adopter</option>
+                    <option value={"ROLE_STAFF_PUBLISHER"}>Publisher</option>
+                    <option value={"ROLE_STAFF_REVIEWER"}>Reviewer</option>
+                    <option value={"ROLE_MANAGER"}>Manager</option>
                 </select>
 
                 <input className="input"

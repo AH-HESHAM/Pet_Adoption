@@ -12,8 +12,9 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../navbar/nave.css";
 import { paths } from "../../collection";
+import PostsList from "../Posts/Posts"
 
-const NavbarComponent = () => {
+const NavbarComponent = (props) => {
   const [showNotification, setShowNotification] = useState(false);
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
@@ -230,6 +231,7 @@ const NavbarComponent = () => {
           </ListGroup>
         </Modal.Body>
       </Modal>
+      {props.tab === "posts" && <PostsList type={props.type} listToShow={props.listToShow}/>}
     </>
   );
 };

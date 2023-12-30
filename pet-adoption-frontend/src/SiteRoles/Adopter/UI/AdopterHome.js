@@ -18,8 +18,8 @@ function AdopterHome(props) {
 
 	return (
 		<div>
-			<NavbarComponent/>
-			<PostsList type="adopter" listToShow={listToShow}/>
+			<NavbarComponent tab={"posts"} type={"adopter"} listToShow={listToShow}/>
+			
 			<Profile/>
 		</div>
 	);
