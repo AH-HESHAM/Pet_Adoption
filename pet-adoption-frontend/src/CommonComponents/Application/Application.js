@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import AdoptionApplicationService from "../../SiteRoles/Adopter/Service/AdopterService";
+import {submitAdoptionApplication} from "../../SiteRoles/Adopter/Service/AdopterService";
 import { GetAuthDataFn } from "../../Base/wrapper";
 
 const AdoptionApplicationModal = (props) => {
@@ -18,7 +18,7 @@ const AdoptionApplicationModal = (props) => {
         const adopterID = person.id
         console.log(petID)
         console.log(adopterID)
-      await AdoptionApplicationService.submitAdoptionApplication(
+      await submitAdoptionApplication(
        petID,
         adopterID,
         adopterName,

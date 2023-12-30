@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../navbar/nave.css";
 import { paths } from "../../collection";
+import { searchService } from "../../SiteRoles/Adopter/Service/AdopterService";
 
 const NavbarComponent = () => {
   const [showNotification, setShowNotification] = useState(false);
@@ -20,6 +21,8 @@ const NavbarComponent = () => {
   const [houseTrainingFilter, setHouseTrainingFilter] = useState(false);
   const [vaccinationFilter, setVaccinationFilter] = useState("none");
   const [spayingNeuteringFilter, setSpayingNeuteringFilter] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleNotificationClick = () => {
     setShowNotification(!showNotification);
@@ -55,13 +58,24 @@ const NavbarComponent = () => {
       const updatedFilter = vaccinationFilter.includes(vaccinationType)
         ? vaccinationFilter.filter((type) => type !== vaccinationType)
         : [...vaccinationFilter, vaccinationType];
-  
+
       // If "None" was previously selected, remove it
       if (updatedFilter.includes("none")) {
         updatedFilter.splice(updatedFilter.indexOf("none"), 1);
       }
-  
+
       setVaccinationFilter(updatedFilter);
+    }
+  };
+
+  const handleSearch = async () => {
+    console.log("Selected Filter:", selectedFilter);
+    console.log("Search Query:", searchQuery);
+    try {
+      await searchService(selectedFilter, searchQuery);
+      console.log("Search Service successful");
+    } catch (error) {
+      console.error("Error Search service:", error);
     }
   };
 
@@ -110,14 +124,28 @@ const NavbarComponent = () => {
                 className="d-flex"
                 style={{ minWidth: "480px", paddingLeft: "10px" }}
               >
-                {/* Added margin to the right of the search box */}
+                <Form.Select
+                  style={{ width: "180px" }}
+                  className="mr-2"
+                  onChange={(e) => setSelectedFilter(e.target.value)}
+                >
+                  <option value="">Search Category</option>
+                  <option value="species">Species</option>
+                  <option value="breed">Breed</option>
+                  <option value="age">Age</option>
+                  <option value="shelter">Shelter Location</option>
+                </Form.Select>
                 <Form.Control
                   type="text"
                   placeholder="Search"
                   className="mr-2"
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                {/* Added spacing between the search box and search button */}
-                <Button variant="outline-success" className="mr-2">
+                <Button
+                  variant="outline-success"
+                  className="mr-2"
+                  onClick={handleSearch}
+                >
                   Search
                 </Button>
               </Form>

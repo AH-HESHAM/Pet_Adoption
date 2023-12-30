@@ -29,8 +29,27 @@ const submitAdoptionApplication = async (petID,adopterID,adopterName, contactInf
     throw error;
   }
 };
-const AdoptionApplicationService = {
-  submitAdoptionApplication,
+
+const searchService = async (selectedFilter, searchQuery) => {
+    try {
+        const response = await axios.post(
+            `${serverHost}/search/apply`,  
+            {
+              selectedFilter,
+              searchQuery,
+            },
+            {
+              withCredentials: true,
+            }
+          );
+          console.log("API Response:", response.data);
+        } catch (error) {
+          console.error("Error performing search:", error);
+        }
 };
 
-export default AdoptionApplicationService;
+
+
+
+export { submitAdoptionApplication, searchService };
+
