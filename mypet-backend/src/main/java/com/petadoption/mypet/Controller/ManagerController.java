@@ -31,7 +31,7 @@ public class ManagerController {
         return petService.getAllPetsForManager(managerId.getManagerId());
     }
     @PostMapping("/staff")
-    public List<Staff> getStaff(int managerId) {
-        return staffService.getAllStaffForManager(managerId);
+    public List<Staff> getStaff(@RequestBody ManagerPostDTO managerId) {
+        return staffService.getAllStaffForManager(managerId.getManagerId());
     }
 }
