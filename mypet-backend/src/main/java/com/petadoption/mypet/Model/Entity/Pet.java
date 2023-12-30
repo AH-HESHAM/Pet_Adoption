@@ -15,10 +15,6 @@ public class Pet {
         MALE, FEMALE
     }
 
-    public enum Vaccination {
-        A, B, C
-    }
-
     public enum Species {
         DOG, CAT
     }
@@ -51,9 +47,7 @@ public class Pet {
     @Lob
     private List<String> images;
 
-    @ElementCollection
-    @Enumerated(EnumType.STRING)
-    private List<Vaccination> vaccinations;
+    private boolean vaccinations;
 
     public Pet() {
     }

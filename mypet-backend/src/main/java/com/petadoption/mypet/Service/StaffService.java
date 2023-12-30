@@ -15,4 +15,5 @@ public class StaffService {
     public List<Staff> getAllStaffForManager(int managerId) {
         return staffRepository.getStaffByManager(managerId);
     }
+
 }
