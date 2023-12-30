@@ -10,7 +10,8 @@ import {
     GlobalPrivilege,
     InternalPrivilege,
     paths,
-    StaffPrivilege,
+    PublisherPrivilage,
+    ReviewerPrivilage,
     ManagerPrivilege
 
 } from "../collection";
@@ -79,7 +80,7 @@ export const nav = [
         path: paths.ReviewerHome,
         Title: "Reviewer Home",
         element: <ReviewerHome />,
-        status: GlobalPrivilege
+        status: ReviewerPrivilage
     },
 
     // Staff reviewer Pages
@@ -87,7 +88,7 @@ export const nav = [
         path: paths.PublisherHome,
         Title: "Publisher Home",
         element: <PublisherHome />,
-        status: GlobalPrivilege
+        status: PublisherPrivilage
     }
 
 ]

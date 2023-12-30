@@ -4,8 +4,9 @@ import com.petadoption.mypet.DTO.LogInRequestDTO;
 import com.petadoption.mypet.DTO.LogInResponseDTO;
 import com.petadoption.mypet.DTO.SignUpDTO;
 import com.petadoption.mypet.Enum.Role;
+import com.petadoption.mypet.Model.Entity.Shelter;
 import com.petadoption.mypet.Model.Entity.User;
-import com.petadoption.mypet.Model.Repository.UserRepository;
+import com.petadoption.mypet.Model.Repository.*;
 import com.petadoption.mypet.Security.JwtService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,31 +19,77 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RegistrationService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
     private JwtService jwtService;
-
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private AdopterRepository adopterRepository;
+    @Autowired
+    private StaffRepository staffRepository;
+    @Autowired
+    private ManagerRepository managerRepository;
+    @Autowired
+    private ShelterRepository shelterRepository;
     public String registerUser(SignUpDTO signUpDTO) {
-        if(userRepository.existsByEmail(signUpDTO.getEmail())) {
+        if (userRepository.existsByEmail(signUpDTO.getEmail()))
             return "User already exists";
-        }
-        User user = new User().setFirstName(signUpDTO.getFirstName())
+        if (signUpDTO.getRole().toString().equalsIgnoreCase("ROLE_ADOPTER"))
+            addAdopter(signUpDTO);
+        else if (signUpDTO.getRole().toString().equalsIgnoreCase("ROLE_MANAGER"))
+            addManager(signUpDTO);
+        else if (signUpDTO.getRole().toString().contains("STAFF"))
+            addStaff(signUpDTO);
+        else
+            return "Invalid role";
+
+        return "User registered successfully";
+    }
+
+    private void addAdopter(SignUpDTO signUpDTO) {
+        User user = buildUser(signUpDTO);
+        int userId = userRepository.save(user);
+        adopterRepository.save(userId);
+    }
+
+    private void addStaff(SignUpDTO signUpDTO) {
+        User user = buildUser(signUpDTO);
+        int userId = userRepository.save(user);
+        staffRepository.save(userId, signUpDTO.getManagerId(), signUpDTO.getShelterId(),
+                signUpDTO.getRole().toString());
+    }
+
+    private void addManager(SignUpDTO signUpDTO) {
+        // Create manager
+        User user = buildUser(signUpDTO);
+        int userId = userRepository.save(user);
+        managerRepository.save(userId);
+        // Create shelter
+        Shelter shelter = new Shelter().setManagerId(userId)
+                .setName(signUpDTO.getWorksFor())
+                .setLocation(signUpDTO.getShelterAddress()).
+                setContactInfo(signUpDTO.getShelterPhone());
+        shelterRepository.save(shelter);
+    }
+
+    private User buildUser(SignUpDTO signUpDTO) {
+        return new User().setFirstName(signUpDTO.getFirstName())
                 .setLastName(signUpDTO.getLastName())
                 .setEmail(signUpDTO.getEmail())
                 .setPassword(passwordEncoder.encode(signUpDTO.getPassword()))
-                .setPhone(signUpDTO.getPhone()).setAddress(signUpDTO.getAddress())
-                .setCity(signUpDTO.getCity()).setRole(Role.ROLE_ADOPTER);
-        userRepository.save(user);
-        return "User registered successfully";
+                .setPhone(signUpDTO.getPhone()).setRole(signUpDTO.getRole());
     }
-    public LogInResponseDTO signIn(LogInRequestDTO login, @NonNull HttpServletResponse response) throws RuntimeException{
+
+
+    public LogInResponseDTO signIn(LogInRequestDTO login, @NonNull HttpServletResponse response) throws RuntimeException {
         System.out.println("logged in " + login.getEmail() + " " + login.getPassword());
         var authenticationResponse = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword())
@@ -52,12 +99,14 @@ public class RegistrationService {
         createHttpOnlyCookie(response, jwtToken);
         return generateResponse(login, jwtToken);
     }
-    private void createHttpOnlyCookie(@NonNull HttpServletResponse response, String jwtToken){
+
+    private void createHttpOnlyCookie(@NonNull HttpServletResponse response, String jwtToken) {
         Cookie cookie = new Cookie("Authorization", jwtToken); // bearer
         cookie.setHttpOnly(true);
         cookie.setPath("/");
         response.addCookie(cookie);
     }
+
     private LogInResponseDTO generateResponse(LogInRequestDTO login, String jwtToken) {
         User user = userRepository.findByEmail(login.getEmail()).orElseThrow(() -> new RuntimeException("User not found"));
         return new LogInResponseDTO().setId(user.getId()).setEmail(user.getEmail())
@@ -66,19 +115,7 @@ public class RegistrationService {
                 .setPrivilege(user.getRole().toString().substring(5));
     }
 
-
-//    public String signIn(String email, String password) {
-//        try {
-//            var authentication = authenticationManager.authenticate(
-//                    new UsernamePasswordAuthenticationToken(email, password)
-//            );
-//            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//            SecurityContextHolder.getContext().setAuthentication(authentication);
-//            return jwtService.generateToken(userDetails);
-//        } catch (RuntimeException e) {
-//            System.out.println(e.getMessage());
-//            return "Login failed";
-//        }
-//    }
-
+    public List<Shelter> getShelters() {
+        return shelterRepository.getShelters();
+    }
 }

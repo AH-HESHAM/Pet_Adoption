@@ -27,9 +27,7 @@ public class UserRepository {
     }
 
     public Optional<User> findByEmail(String email) {
-
         String sql = "SELECT * FROM user WHERE email = " + "\"" + email + "\"";
-
         List<User> users = jdbcTemplate.query(sql, (res, rowNum) -> {
             User user = new User();
             user.setId(res.getInt("user_id"));
@@ -52,7 +50,7 @@ public class UserRepository {
     public int save(User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         String sql = "INSERT INTO user (first_name, last_name, email, password, phone, role) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection
                     .prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -61,7 +59,7 @@ public class UserRepository {
             ps.setString(3, user.getEmail());
             ps.setString(4, user.getPassword());
             ps.setString(5, user.getPhone());
-            ps.setString(8, user.getRole().name());
+            ps.setString(6, user.getRole().toString());
             return ps;
         }, keyHolder);
 

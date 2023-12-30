@@ -24,7 +24,7 @@ const PostsList = (props)=>{
                             <p className='postShelter'>{value.shelter}</p>
                         </div>
 
-                        <p className='postDate'>{value.date}</p>
+                        {/* <p className='postDate'>{value.date}</p> */}
 
                         
                         <div>
@@ -57,15 +57,15 @@ const PostsList = (props)=>{
                             <label className='postInfo'>{value.description}</label>
                         </div>
                         
-                        <div>
+                        {/* <div>
                             <label className='postInfoTitle'>Spaying: </label> 
                             <label className='postInfo'>{value.spaying? "yes" : "no"}</label>
-                        </div>
+                        </div> */}
                         
-                        <div>
+                        {/* <div>
                             <label className='postInfoTitle'>HouseTraining: </label> 
                             <label className='postInfo'>{value.houseTraining}</label> 
-                        </div>
+                        </div> */}
                         
                         <div>
                             <label className='postInfoTitle'>Vaccinations: </label>
@@ -79,7 +79,7 @@ const PostsList = (props)=>{
                         
                         <div>
                             <label className='postInfoTitle'>HealthState: </label>
-                            <label className='postInfo'>{value.healthState}</label>
+                            <label className='postInfo'>{value.healthStatus}</label>
                         </div>
                         
                         {props.type === "adopter" && <button className='listBtn' onClick={openModal}>Request Adoption</button>}

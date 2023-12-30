@@ -83,8 +83,8 @@ function PublisherHome(props) {
 
 	return (
 		<div>
-			<NavbarComponent/>
-			{tab === "posts" && <PostsList type="staff" listToShow={listToShow}/>}
+			<NavbarComponent tab={tab} type={"publisher"} listToShow={listToShow}/>
+			{/* {tab === "posts" && <PostsList type="staff" listToShow={listToShow}/>} */}
 			<Profile/>
 			<button onClick={() => {setTab("posts")}} className='postsIcon'></button>
             <button onClick={openModal} className="createIcon"></button>
