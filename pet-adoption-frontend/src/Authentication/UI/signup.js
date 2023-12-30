@@ -19,8 +19,8 @@ function Signup(props) {
     const [location, setLocation] = useState("");
     const [phone, setPhone] = useState("");
     const [shelterPhone, setShelterPhone] = useState("");
-    const [managerId, setManagerId] = useState("");
-    const [shelterId, setShelterId] = useState("");
+    const [managerId, setManagerId] = useState("0");
+    const [shelterId, setShelterId] = useState("0");
     const [role, setRole] = useState("PUBLISHER");
     
     const [passMatching, setPassMatching] = useState(true)
@@ -75,17 +75,24 @@ function Signup(props) {
 
     const handleRoleChange = async (role)=>{
         setKind(role)
-        if(role === "STAFF"){
+        if(role === "STAFF"  ){
+            console.log("hhhhhhhhhhhhhhhhhhhhhhhhh")
             // need request from backend
             const res = await GetShelters();
+            console.log("list")
+            console.log(res)
             setAllShelters(res);
+            // console.log("aloooo")
+            // console.log(allShelters)
         }
     }
 
     const handleShelterName = (shelter)=>{
-        setShelterName(shelter.name);
-        setManagerId(shelter.managerId)
-        setShelterId(shelter.shelterId)
+        console.log("shelter")
+        console.log(shelter[1])
+        setShelterName(shelter[2]);
+        setManagerId(shelter[1])
+        setShelterId(shelter[0])
     }
 
     const handleConfirmPassword = (pass)=>{
@@ -144,7 +151,7 @@ function Signup(props) {
                         {/* list of shelters in system */}
                         <select onChange={(e) => handleShelterName(e.target.value)} className="input">
                             {allShelters.map((shelter) => (
-                                <option value={shelter}>{"Works for: " + shelter.name}</option>
+                                <option key={shelter.name} value={[shelter.shelterId, shelter.managerId, shelter.name]}>{"Works for: " + shelter.name}</option>
                             ))}
                         </select>
                     </>

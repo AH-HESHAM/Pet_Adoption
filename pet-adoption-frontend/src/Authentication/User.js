@@ -6,8 +6,8 @@ export class user{
     phone = "";
     role = "";
     worksFor = "";
-    managerId = ""; 
     shelterAddress = "";
     shelterPhone = "";
+    managerId = ""; 
     shelterId = "";
 };
