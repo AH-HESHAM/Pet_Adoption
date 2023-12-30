@@ -47,19 +47,19 @@ function Login(props) {
     return (
         <div className="allComponents">
             <div className="logo"></div>
-            <button onClick={handle}>
+            {/* <button onClick={handle}>
                 click security
-            </button>
+            </button> */}
             <form className="form" onSubmit={handleLogin}>
                 <h1 className="header_text">Login</h1>
 
                 {/* user type */}
-                <select onChange={(e) => setKind(e.target.value)} className="input">
+                {/* <select onChange={(e) => setKind(e.target.value)} className="input">
                     <option value={"ROLE_ADOPTER"}>Adopter</option>
                     <option value={"ROLE_STAFF_PUBLISHER"}>Publisher</option>
                     <option value={"ROLE_STAFF_REVIEWER"}>Reviewer</option>
                     <option value={"ROLE_MANAGER"}>Manager</option>
-                </select>
+                </select> */}
 
                 <input className="input"
                     placeholder="E-mail as name@example.com"
@@ -78,7 +78,7 @@ function Login(props) {
                 </button>
                 <span className="small">Don't have an account? <Link className="link" to={paths.signup}>Sign up</Link></span>
             </form>
-            <button></button>
+            {/* <button></button> */}
         </div>
     )
 

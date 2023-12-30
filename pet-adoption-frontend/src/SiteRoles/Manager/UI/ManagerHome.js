@@ -3,39 +3,14 @@ import PostsList from '../../../CommonComponents/Posts/Posts';
 import Profile from '../../../CommonComponents/profile/profile';
 import "./manager.css"
 import React, {useEffect ,useState } from 'react';
-import getManagerPostsRequest from "../Service/ManagerService"
+import {getManagerPostsRequest, getManagerStaff} from "../Service/ManagerService"
 import { GetAuthDataFn } from '../../../Base/wrapper';
 
 function ManagerHome(props) {
     const {person} = GetAuthDataFn();
 	const [listToShow, setListToShow] = useState([])
 
-	const [staffList, setStaffList] = useState(
-		[{
-            id: 1,
-			email: "staf1Email@gamil.com",
-			fname: "Fname",
-			lname: "Lname",
-			phone: "01234567891",
-            role: "publisher"
-		}, 
-        {
-            id: 2,
-			email: "staf1Email@gamil.com",
-			fname: "Fname",
-			lname: "Lname",
-			phone: "10000",
-            role: "publisher"
-		},
-        {
-            id: 3,
-			email: "staf1Email@gamil.com",
-			fname: "Fname",
-			lname: "Lname",
-			phone: "10000",
-            role: "publisher"
-		}]
-	)
+	const [staffList, setStaffList] = useState([])
 
 	const [tab, setTab] = useState("posts");
 
@@ -55,13 +30,14 @@ function ManagerHome(props) {
         getPosts();
     }, []);
 	
-	// useEffect(() => {
-    //     const getUser = async () => {
-    //     const user = await getUserInfoRequest;
-    //     setListToShow(posts)
-    //     };
-    //     getUser();
-    // }, []);
+	useEffect(() => {
+        const getUser = async () => {
+        const user = await getManagerStaff(person.id);
+        setStaffList(user)
+        console.log(staffList)
+        };
+        getUser();
+    }, []);
 
 	return (
 		<div>
@@ -87,16 +63,16 @@ function ManagerHome(props) {
                         <>
                             <tr key={value.id}>
                                 <td>{value.email}</td>
-                                <td>{value.fname}</td>
-                                <td>{value.lname}</td>
+                                <td>{value.firstName}</td>
+                                <td>{value.lastName}</td>
                                 <td>{value.phone}</td>
                                 <td>{value.role}</td>
                                 {/* <td>
                                     <button onClick={()=>{handleShowDetails(value.id)}}>Activity</button>
                                 </td> */}
-                                <td>
+                                {/* <td>
                                     <button onClick={()=>{setFireId(value.id)}}>Fire</button>
-                                </td>
+                                </td> */}
                             </tr>
                             {fireId === value.id &&
                                 <div className='confirmFireForm'>
