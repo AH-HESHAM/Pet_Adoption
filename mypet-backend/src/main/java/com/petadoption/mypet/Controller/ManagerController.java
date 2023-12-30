@@ -1,5 +1,6 @@
 package com.petadoption.mypet.Controller;
 
+import com.petadoption.mypet.DTO.ManagerPostDTO;
 import com.petadoption.mypet.DTO.PetDTO;
 import com.petadoption.mypet.Model.Entity.Pet;
 import com.petadoption.mypet.Service.PetService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +23,7 @@ public class ManagerController {
     private PetService petService;
 
     @PostMapping("/pets")
-    public List<PetDTO> getPets(int managerId) {
-        return petService.getAllPetsForManager(managerId);
+    public List<PetDTO> getPets(@RequestBody ManagerPostDTO managerId) {
+        return petService.getAllPetsForManager(managerId.getManagerId());
     }
 }

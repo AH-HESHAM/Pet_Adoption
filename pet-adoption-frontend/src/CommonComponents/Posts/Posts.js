@@ -69,7 +69,7 @@ const PostsList = (props)=>{
                         
                         <div>
                             <label className='postInfoTitle'>Vaccinations: </label>
-                            <label className='postInfo'>{value.vaccinations}</label>
+                            <label className='postInfo'>{value.vaccinations? "yes" :"no"}</label>
                         </div>
                         
                         <div>

@@ -2,84 +2,31 @@ import NavbarComponent from '../../../CommonComponents/navbar/nave';
 import PostsList from '../../../CommonComponents/Posts/Posts';
 import Profile from '../../../CommonComponents/profile/profile';
 import "./staff.css"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PostCreator from "./postCreator"
+import getStaffPostsRequest from "../Service/StaffService"
+import { GetAuthDataFn } from '../../../Base/wrapper';
 
 function PublisherHome(props) {
 
+    const {person} = GetAuthDataFn();
+
 	const [tab, setTab] = useState("posts");
 
-	const [listToShow, setListToShow] = useState([
-        {
-            id: 1,
-            date: '1-1-2001',
-            shelter: "shelter name",
-            name: "lolo",
-            species: "dog",
-            breed: "kalb balady",
-            age: 5,
-            gender: "male",
-            description: "el kalb lolo how how el kalb lolo how how ",
-            spaying: false,
-            houseTraining: "middle",
-            vaccinations: ["v1", "v2"],
-            behavior: "nice",
-            healthState: "good"
-        },
-        {
-            id: 2,
-            date: '1-1-2001',
-            shelter: "shelter name",
-            name: "lolo",
-            species: "dog",
-            breed: "kalb balady",
-            age: 5,
-            gender: "male",
-            description: "el kalb lolo how how el kalb lolo how how ",
-            spaying: false,
-            houseTraining: "middle",
-            vaccinations: ["v1", "v2"],
-            behavior: "nice",
-            healthState: "good"
-        },
-        {
-            id: 3,
-            date: '1-1-2001',
-            shelter: "shelter name",
-            name: "lolo",
-            species: "dog",
-            breed: "kalb balady",
-            age: 5,
-            gender: "male",
-            description: "el kalb lolo how how el kalb lolo how how ",
-            spaying: false,
-            houseTraining: "middle",
-            vaccinations: ["v1", "v2"],
-            behavior: "nice",
-            healthState: "good"
-        },
-        {
-            id: 4,
-            date: '1-1-2001',
-            shelter: "shelter name",
-            name: "lolo",
-            species: "dog",
-            breed: "kalb balady",
-            age: 5,
-            gender: "male",
-            description: "el kalb lolo how how el kalb lolo how how ",
-            spaying: false,
-            houseTraining: "middle",
-            vaccinations: ["v1", "v2"],
-            behavior: "nice",
-            healthState: "good"
-        }
-    ])
+	const [listToShow, setListToShow] = useState([])
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => { setIsModalOpen(true) };
     const closeModal = () => { setIsModalOpen(false) };
+
+    useEffect(() => {
+        const getPosts = async () => {
+            const posts = await getStaffPostsRequest(person.id);
+            setListToShow(posts)
+        };
+        getPosts();
+    }, []);
 
 	return (
 		<div>
