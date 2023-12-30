@@ -1,9 +1,11 @@
 package com.petadoption.mypet.Model.Repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import com.petadoption.mypet.DTO.PetDTO;
+import com.petadoption.mypet.Model.Entity.Pet;
 import com.petadoption.mypet.Utility.PetRowMapper;
 import java.util.List;
 
@@ -48,6 +50,26 @@ public class PetRepository {
 
     public List<PetDTO> searchPetsAll(String searchQuery) {
         return searchPetsByName(searchQuery);
+    }
+
+
+      public List<PetDTO> applyFilters(boolean houseTrainingFilter, List<String> vaccinationFilter, boolean spayingNeuteringFilter) {
+        // Construct the SQL query based on the provided filters
+        String sql = "SELECT * FROM pets WHERE 1=1";
+
+        if (houseTrainingFilter) {
+            sql += " AND house_trained = true";
+        }
+
+        if (!vaccinationFilter.isEmpty()) {
+            sql += " AND vaccination IN ('" + String.join("', '", vaccinationFilter) + "')";
+        }
+
+        if (spayingNeuteringFilter) {
+            sql += " AND spayed_neutered = true";
+        }
+        // Execute the query and return the result
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PetDTO.class));
     }
 
 
