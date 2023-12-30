@@ -76,20 +76,13 @@ function Signup(props) {
     const handleRoleChange = async (role)=>{
         setKind(role)
         if(role === "STAFF"  ){
-            console.log("hhhhhhhhhhhhhhhhhhhhhhhhh")
             // need request from backend
             const res = await GetShelters();
-            console.log("list")
-            console.log(res)
             setAllShelters(res);
-            // console.log("aloooo")
-            // console.log(allShelters)
         }
     }
 
     const handleShelterName = (shelter)=>{
-        console.log("shelter")
-        console.log(shelter[1])
         setShelterName(shelter[2]);
         setManagerId(shelter[1])
         setShelterId(shelter[0])
