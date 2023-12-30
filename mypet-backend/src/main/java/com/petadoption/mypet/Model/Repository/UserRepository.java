@@ -27,7 +27,9 @@ public class UserRepository {
     }
 
     public Optional<User> findByEmail(String email) {
+
         String sql = "SELECT * FROM user WHERE email = " + "\"" + email + "\"";
+
         List<User> users = jdbcTemplate.query(sql, (res, rowNum) -> {
             User user = new User();
             user.setId(res.getInt("user_id"));

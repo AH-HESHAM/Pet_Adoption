@@ -1,9 +1,12 @@
 import NavbarComponent from '../../../CommonComponents/navbar/nave';
 import PostsList from '../../../CommonComponents/Posts/Posts';
 import Profile from '../../../CommonComponents/profile/profile';
+import "./staff.css"
 import React, { useState } from 'react';
 
-function AdopterHome(props) {
+function ReviewerHome(props) {
+
+	const [tab, setTab] = useState("posts");
 
 	const [listToShow, setListToShow] = useState([
         {
@@ -72,21 +75,16 @@ function AdopterHome(props) {
         }
     ])
 
-	// useEffect(() => {
-    //     const getPosts = async () => {
-    //     const posts = await postsRequest;
-    //     setListToShow(posts)
-    //     };
-    //     getPosts();
-    // }, []);
-
 	return (
 		<div>
 			<NavbarComponent/>
-			<PostsList type="adopter" listToShow={listToShow}/>
+			{tab === "posts" && <PostsList type="staff" listToShow={listToShow}/>}
 			<Profile/>
+			<button onClick={() => {setTab("posts")}} className='postsIcon'></button>
+            <button onClick={() => {setTab("requsts")}} className="requestsIcon"></button>
+            {/* <button onClick={() => {setTab("create")}} className="createIcon"></button> */}
 		</div>
 	);
 }
 
-export default AdopterHome;
+export default ReviewerHome;

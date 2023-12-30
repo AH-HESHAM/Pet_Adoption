@@ -1,7 +1,8 @@
 import '../profile/profileStyle.css'
 import React, { useState } from 'react';
+import {GetAuthDataFn} from "../../Base/wrapper"
 
-const Profile = (props)=>{
+const Profile = ()=>{
 
     const [showProfile, setShowProfile] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
@@ -34,14 +35,17 @@ const Profile = (props)=>{
         setShowProfile(true);
     }
 
+    const { person } = GetAuthDataFn();
+    const [user, setUser] = useState(person);
+
     return(
         <div className='allProfile'>
             <button onClick={handleViewProfile} className='profileIcon'></button>
             {showProfile && 
                 <div className='profileBody'>
                     <div className='profileInfo'>
-                        <p>{props.user.email}</p>
-                        <p>{props.user.name}</p>
+                        <p>{user.email}</p>
+                        <p>{user.name}</p>
                         {/* <p>{props.user.lname}</p> */}
                         {/* <p>{props.user.phone}</p> */}
                     </div>

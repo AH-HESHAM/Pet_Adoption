@@ -1,9 +1,13 @@
 import NavbarComponent from '../../../CommonComponents/navbar/nave';
 import PostsList from '../../../CommonComponents/Posts/Posts';
 import Profile from '../../../CommonComponents/profile/profile';
+import "./staff.css"
 import React, { useState } from 'react';
+import PostCreator from "./postCreator"
 
-function AdopterHome(props) {
+function PublisherHome(props) {
+
+	const [tab, setTab] = useState("posts");
 
 	const [listToShow, setListToShow] = useState([
         {
@@ -72,21 +76,21 @@ function AdopterHome(props) {
         }
     ])
 
-	// useEffect(() => {
-    //     const getPosts = async () => {
-    //     const posts = await postsRequest;
-    //     setListToShow(posts)
-    //     };
-    //     getPosts();
-    // }, []);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => { setIsModalOpen(true) };
+    const closeModal = () => { setIsModalOpen(false) };
 
 	return (
 		<div>
 			<NavbarComponent/>
-			<PostsList type="adopter" listToShow={listToShow}/>
+			{tab === "posts" && <PostsList type="staff" listToShow={listToShow}/>}
 			<Profile/>
+			<button onClick={() => {setTab("posts")}} className='postsIcon'></button>
+            <button onClick={openModal} className="createIcon"></button>
+            {<PostCreator closeModal={closeModal} isOpen={isModalOpen}/>}
 		</div>
 	);
 }
 
-export default AdopterHome;
+export default PublisherHome;
